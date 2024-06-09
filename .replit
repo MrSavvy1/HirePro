@@ -1,5 +1,5 @@
 entrypoint = "index.js"
-modules = ["nodejs-16"]
+modules = ["nodejs-16", "nodejs-20"]
 hidden = [".config", "package-lock.json"]
 
 [gitHubImport]
