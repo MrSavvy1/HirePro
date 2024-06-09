@@ -1,11 +1,13 @@
 import React from 'react';
+import Header from './Header';
 
 const Home = ({ setPage }) => {
 	return (
 		<div className="container">
-			<h1>Welcome to Our Service</h1>
-			<button onClick={() => setPage('whoAreYou')}>Sign Up</button>
-			<button onClick={() => setPage('login')}>Login</button>
+			<Header setPage={setPage} />
+			<div className="content">
+				<h1>Welcome to HirePro</h1>
+			</div>
 		</div>
 	);
 };

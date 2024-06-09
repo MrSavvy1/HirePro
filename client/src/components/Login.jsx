@@ -2,32 +2,42 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const Login = ({ setPage }) => {
-	const [loginData, setLoginData] = useState({ email: '', password: '' });
+	const [formData, setFormData] = useState({
+		email: '',
+		password: ''
+	});
 
-	const handleInputChange = (e) => {
-		const { name, value } = e.target;
-		setLoginData({ ...loginData, [name]: value });
+	const handleChange = (e) => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value
+		});
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+
 		try {
-			const res = await axios.post('http://localhost:5000/api/login', loginData);
-			if (res.data.success) {
+			const response = await axios.post('http://localhost:5000/api/auth/login', formData);
+			if (response.data.success) {
 				setPage('welcome');
+			} else {
+				alert('Invalid credentials!');
 			}
 		} catch (error) {
-			console.error(error);
+			console.error('Login error:', error);
 		}
 	};
 
 	return (
-		<form className="form-container" onSubmit={handleSubmit}>
+		<div className="container form-container">
 			<h2>Login</h2>
-			<input type="email" name="email" placeholder="Your email address" onChange={handleInputChange} required />
-			<input type="password" name="password" placeholder="Your Password" onChange={handleInputChange} required />
-			<button type="submit">Login</button>
-		</form>
+			<form onSubmit={handleSubmit}>
+				<input type="email" name="email" placeholder="Your email address" value={formData.email} onChange={handleChange} required />
+				<input type="password" name="password" placeholder="Your password" value={formData.password} onChange={handleChange} required />
+				<button type="submit">Login</button>
+			</form>
+		</div>
 	);
 };
 

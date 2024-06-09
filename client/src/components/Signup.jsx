@@ -2,33 +2,46 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 const Signup = ({ setPage, role }) => {
-	const [formData, setFormData] = useState({ name: '', email: '', password: '', role });
+	const [formData, setFormData] = useState({
+		name: '',
+		email: '',
+		password: '',
+		confirmPassword: ''
+	});
 
-	const handleInputChange = (e) => {
-		const { name, value } = e.target;
-		setFormData({ ...formData, [name]: value });
+	const handleChange = (e) => {
+		setFormData({
+			...formData,
+			[e.target.name]: e.target.value
+		});
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		if (formData.password !== formData.confirmPassword) {
+			alert('Passwords do not match!');
+			return;
+		}
+
 		try {
-			const res = await axios.post('http://localhost:5000/api/signup', formData);
-			if (res.data.success) {
-				setPage('login');
-			}
+			await axios.post('http://localhost:5000/api/auth/signup', { ...formData, role });
+			setPage('login');
 		} catch (error) {
-			console.error(error);
+			console.error('Signup error:', error);
 		}
 	};
 
 	return (
-		<form className="form-container" onSubmit={handleSubmit}>
-			<h2>Create your account</h2>
-			<input type="text" name="name" placeholder="Full name" onChange={handleInputChange} required />
-			<input type="email" name="email" placeholder="Your email address" onChange={handleInputChange} required />
-			<input type="password" name="password" placeholder="Your Password" onChange={handleInputChange} required />
-			<button type="submit">Sign Up</button>
-		</form>
+		<div className="container form-container">
+			<h2>Signup as {role}</h2>
+			<form onSubmit={handleSubmit}>
+				<input type="text" name="name" placeholder="Full name" value={formData.name} onChange={handleChange} required />
+				<input type="email" name="email" placeholder="Your email address" value={formData.email} onChange={handleChange} required />
+				<input type="password" name="password" placeholder="Your password" value={formData.password} onChange={handleChange} required />
+				<input type="password" name="confirmPassword" placeholder="Confirm your password" value={formData.confirmPassword} onChange={handleChange} required />
+				<button type="submit">Sign Up</button>
+			</form>
+		</div>
 	);
 };
 
