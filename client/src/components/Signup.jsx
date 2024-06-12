@@ -1,46 +1,78 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import './Signup.css';
 
-const Signup = ({ setPage, role }) => {
+const Signup = ({ role }) => {
 	const [formData, setFormData] = useState({
 		name: '',
 		email: '',
 		password: '',
-		confirmPassword: ''
+		confirmPassword: '',
 	});
 
+	const [error, setError] = useState('');
+	const navigate = useNavigate();
+
 	const handleChange = (e) => {
-		setFormData({
-			...formData,
-			[e.target.name]: e.target.value
-		});
+		const { name, value } = e.target;
+		setFormData({ ...formData, [name]: value });
 	};
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (formData.password !== formData.confirmPassword) {
-			alert('Passwords do not match!');
+			setError('Passwords do not match');
 			return;
 		}
 
 		try {
-			await axios.post('http://localhost:5000/api/auth/signup', { ...formData, role });
-			setPage('login');
-		} catch (error) {
-			console.error('Signup error:', error);
+			await axios.post(`/api/auth/signup/${role.toLowerCase()}`, formData);
+			navigate('/login');
+		} catch (err) {
+			setError('An error occurred during signup');
 		}
 	};
 
 	return (
-		<div className="container form-container">
+		<div className="signup-container">
 			<h2>Signup as {role}</h2>
 			<form onSubmit={handleSubmit}>
-				<input type="text" name="name" placeholder="Full name" value={formData.name} onChange={handleChange} required />
-				<input type="email" name="email" placeholder="Your email address" value={formData.email} onChange={handleChange} required />
-				<input type="password" name="password" placeholder="Your password" value={formData.password} onChange={handleChange} required />
-				<input type="password" name="confirmPassword" placeholder="Confirm your password" value={formData.confirmPassword} onChange={handleChange} required />
-				<button type="submit">Sign Up</button>
+				<input
+					type="text"
+					name="name"
+					placeholder="Name"
+					value={formData.name}
+					onChange={handleChange}
+					required
+				/>
+				<input
+					type="email"
+					name="email"
+					placeholder="Email"
+					value={formData.email}
+					onChange={handleChange}
+					required
+				/>
+				<input
+					type="password"
+					name="password"
+					placeholder="Password"
+					value={formData.password}
+					onChange={handleChange}
+					required
+				/>
+				<input
+					type="password"
+					name="confirmPassword"
+					placeholder="Confirm Password"
+					value={formData.confirmPassword}
+					onChange={handleChange}
+					required
+				/>
+				<button type="submit">Signup</button>
 			</form>
+			{error && <p className="error">{error}</p>}
 		</div>
 	);
 };
