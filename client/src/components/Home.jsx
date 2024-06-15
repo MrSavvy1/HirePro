@@ -1,14 +1,12 @@
 import React from 'react';
 import Header from './Header';
-import { Link } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({ setPage }) => {
 	return (
 		<div className="container">
-			<Header />
+			<Header setPage={setPage} />
 			<div className="content">
 				<h1>Welcome to HirePro</h1>
-				
 			</div>
 		</div>
 	);

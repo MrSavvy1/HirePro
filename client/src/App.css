@@ -1,22 +1,21 @@
-/* App.css */
-
-body, html {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  width: 100%;
+body {
   font-family: Arial, sans-serif;
+  text-align: center;
   background-color: #f2f2f2;
-}
-
-#root, .container {
   display: flex;
-  flex-direction: column;
-  height: 100%;
-  width: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
 }
 
-.header {
+.container {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+header {
   width: 100%;
   padding: 20px;
   background-color: #4CAF50;
@@ -45,13 +44,18 @@ body, html {
   background-color: #ddd;
 }
 
-.content {
-  flex: 1;
+form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  text-align: center;
+  margin-top: 20px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 10px;
+  cursor: pointer;
 }
 
 .form-container {
@@ -63,24 +67,15 @@ body, html {
   background: white;
   padding: 20px;
   border-radius: 10px;
-  background-color: green;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 input {
-  width: 90%;
+  width: 100%;
   padding: 10px;
-  margin: 10px;
+  margin: 10px 0;
   border: 1px solid #ccc;
   border-radius: 5px;
-}
-
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  margin: 10px;
-  color: green;
-  cursor: pointer;
 }
 
 h1 {
