@@ -1,21 +1,22 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: #f2f2f2;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
+/* App.css */
+
+body, html {
   margin: 0;
-}
-
-.container {
-  margin-top: 20px;
+  padding: 0;
+  height: 100%;
   width: 100%;
-  max-width: 1200px;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
 }
 
-header {
+#root, .container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.header {
   width: 100%;
   padding: 20px;
   background-color: #4CAF50;
@@ -44,18 +45,13 @@ header {
   background-color: #ddd;
 }
 
-form {
+.content {
+  flex: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  margin-top: 20px;
-}
-
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  margin: 10px;
-  cursor: pointer;
+  text-align: center;
 }
 
 .form-container {
@@ -67,15 +63,24 @@ button {
   background: white;
   padding: 20px;
   border-radius: 10px;
+  background-color: green;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 input {
-  width: 100%;
+  width: 90%;
   padding: 10px;
-  margin: 10px 0;
+  margin: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin: 10px;
+  color: green;
+  cursor: pointer;
 }
 
 h1 {
