@@ -1,0 +1,26 @@
+.job-listing-container {
+	padding: 20px;
+}
+
+.job-listing-container h2 {
+	text-align: center;
+}
+
+.job-listing-container ul {
+	list-style-type: none;
+	padding: 0;
+}
+
+.job-listing-container li {
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin: 10px 0;
+}
+
+.job-listing-container button {
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+}
