@@ -1,8 +1,6 @@
-// client/src/components/Login.jsx
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-//import './Login.css';
 
 const Login = () => {
 	const [formData, setFormData] = useState({ email: '', password: '', role: 'Employee' });
@@ -16,8 +14,8 @@ const Login = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			await axios.post('/api/auth/login', formData);
-			
+			const roleEndpoint = formData.role.toLowerCase(); // Convert role to lowercase for the endpoint
+			await axios.post(`https://8ed859db-3274-42a7-8bfe-0f4fc51860b6-00-1bu3l2l7vxr5i.spock.replit.dev:5000/api/auth/login/${roleEndpoint}`, formData);
 			navigate('/welcome');
 		} catch (error) {
 			setError('Invalid email or password');

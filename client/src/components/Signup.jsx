@@ -29,7 +29,7 @@ const Signup = ({ role }) => {
 		try {
 			console.log(`Role: ${role}`);
 			console.log("FormData:", formData);
-			await axios.post(`/api/auth/signup/${role.toLowerCase()}`, formData);
+			await axios.post(`https://8ed859db-3274-42a7-8bfe-0f4fc51860b6-00-1bu3l2l7vxr5i.spock.replit.dev:5000/api/auth/signup/${role.toLowerCase()}`, formData);
 			navigate("/login");
 		} catch (err) {
 			console.error("Signup error:", err);
