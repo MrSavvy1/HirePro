@@ -8,7 +8,7 @@ const Signup = ({ role }) => {
 		name: "",
 		email: "",
 		password: "",
-		confirmPassword: "",
+		confirmPassword: ""
 	});
 
 	const [error, setError] = useState("");

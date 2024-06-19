@@ -5,7 +5,7 @@ import WhoAreYou from './components/WhoAreYou';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import JobListing from './components/JobListing';
-import PostJob from './components/PostJob';
+//import PostJob from './components/PostJob';
 import './App.css';
 
 function App() {
@@ -19,13 +19,7 @@ function App() {
           <Route path="/whoareyou" element={<WhoAreYou setRole={setRole} />} />
           <Route path="/signup" element={<Signup role={role} />} />
           <Route path="/login" element={<Login />} />
-          <Route
-            path="/welcome"
-            element={
-              role === 'Company' ? <PostJob /> : <JobListing />
-            }
-          />
-        </Routes>
+                 </Routes>
       </div>
     </Router>
   );
@@ -60,5 +54,12 @@ function App() {
 }
 
 export default App;
+<Route
+  path="/welcome"
+  element={
+    role === 'Company' ? <PostJob /> : <JobListing />
+  }
+/>
+
 */
 export default App;
