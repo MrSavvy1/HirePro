@@ -57,6 +57,7 @@ exports.loginCompany = async (req, res) => {
     console.log(`Com Auth: ${email}`);
     try {
         const company = await Company.findOne({ email: email });
+        console.log(`Auth: ${company}`);
         if (!company) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }

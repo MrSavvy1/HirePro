@@ -8,11 +8,11 @@ const CompanySchema = new mongoose.Schema({
 		password: { type: String, required: true },
 });
 
-/*CompanySchema.pre('save', async function(next) {
+CompanySchema.pre('save', async function(next) {
 		const salt = await bcrypt.genSalt(10);
 		this.password = await bcrypt.hash(this.password, salt);
 		next();
-});*/
+});
 
 CompanySchema.methods.comparePassword = async function(candidatePassword) {
 		return await bcrypt.compare(candidatePassword, this.password);
