@@ -9,6 +9,9 @@ const cookieParser = require('cookie-parser');
 const errorHandler = require("./middleware/error");
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require('./routes/userRoutes');
+const jobCatRoutes = require('./routes/jobCatRoutes');
+const jobListRoutes = require('./routes/jobListRoute');
+const jobApplicationRoute = require('./routes/jobApplicationRoute');
 
 // database connection
 mongoose.connect(process.env.DATABASE, {
@@ -41,6 +44,9 @@ app.use(errorHandler);
 // });
 app.use("/api", authRoutes);
 app.use("/api", userRoutes);
+app.use("/api", jobCatRoutes);
+app.use("/api", jobListRoutes);
+app.use("/api", jobApplicationRoute);
 
 
 //port
