@@ -1,16 +1,23 @@
-// server/server.js
 const express = require('express');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
-const authRoutes = require('./routes/authRoutes');
-const jobRoutes = require('./routes/jobRoutes'); // Import jobRoutes
 const cors = require('cors');
-const authMiddleware = require('./middlewares/authMiddleware'); // Import middleware
+const authRoutes = require('./routes/authRoutes');
+const jobRoutes = require('./routes/jobRoutes');
+const authMiddleware = require('./middlewares/authMiddleware');
 
 dotenv.config();
 
 const app = express();
-app.use(cors());
+
+const corsOptions = {
+    origin: 'https://8ed859db-3274-42a7-8bfe-0f4fc51860b6-00-1bu3l2l7vxr5i.spock.replit.dev:5173', // your frontend URL
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // if you need to send cookies with the requests
+    optionsSuccessStatus: 204
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 mongoose.connect(process.env.DATABASE, {
@@ -19,10 +26,9 @@ mongoose.connect(process.env.DATABASE, {
 })
 .then(() => console.log('MongoDB connected'))
 .catch((err) => console.log(err));
-console.log('In Server now');
 
 app.use('/api/auth', authRoutes);
-app.use('/api/jobs', authMiddleware, jobRoutes); // Use middleware for job routes
+app.use('/api/jobs', authMiddleware, jobRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -40,7 +40,7 @@ const Signup = ({ role }) => {
 	return (
 		<div className="signup-container">
 			
-			<form onSubmit={handleSubmit} classname="form-container">
+			<form onSubmit={handleSubmit} className="form-container">
 				<h2>Signup as {role}</h2>
 				<input
 					type="text"

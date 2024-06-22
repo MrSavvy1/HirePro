@@ -9,16 +9,24 @@ exports.signup = async (req, res) => {
     console.log(`Role is: ${role}`);
 
     try {
-        console.log(`Role is: ${role}`);
-        console.log(role);
+        const existingUser = role === 'employee' 
+            ? await Employee.findOne({ email }) 
+            : await Company.findOne({ email });
+
+        if (existingUser) {
+            return res.status(400).json({ message: 'User already exists' });
+        }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+
         if (role === 'employee') {
-            const employee = await Employee.create({ name, email, password, role });
-            //const token = employee.generateToken();
-            res.status(201).json({ message: 'Employee created'/*, token */});
+            const employee = await Employee.create({ name, email, password: hashedPassword, role });
+            const token = employee.generateToken();
+            res.status(201).json({ message: 'Employee created', token });
         } else if (role === 'company') {
-            const company = await Company.create({ name, email, password, role });
-            //const token = company.generateToken();
-            res.status(201).json({ message: 'Company created', /* token */});
+            const company = await Company.create({ name, email, password: hashedPassword, role });
+            const token = company.generateToken();
+            res.status(201).json({ message: 'Company created', token });
         } else {
             res.status(400).json({ message: 'Invalid role' });
         }
@@ -28,12 +36,10 @@ exports.signup = async (req, res) => {
     }
 };
 
-
-
 exports.loginEmployee = async (req, res) => {
     const { email, password } = req.body;
     console.log(`In Auth: ${email}`);
-    
+
     try {
         const employee = await Employee.findOne({ email: email });
         console.log(`Auth: ${employee}`);
@@ -44,8 +50,8 @@ exports.loginEmployee = async (req, res) => {
         if (!isMatch) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
-        //const token = employee.generateToken();
-        res.status(200).json({/* token, */ role: 'employee' });
+        const token = employee.generateToken();
+        res.status(200).json({ token, role: 'employee' });
     } catch (err) {
         console.log(`Auth: ${email}`);
         res.status(500).json({ message: 'Server error', error: err });
@@ -65,8 +71,8 @@ exports.loginCompany = async (req, res) => {
         if (!isMatch) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
-        //const token = company.generateToken();
-        res.status(200).json({ /*token, */ role: 'company' });
+        const token = company.generateToken();
+        res.status(200).json({ token, role: 'company' });
     } catch (err) {
         res.status(500).json({ message: 'Server error', error: err });
     }
