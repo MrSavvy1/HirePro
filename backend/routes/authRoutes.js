@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { signup, signin, logout, userProfile } = require('../controller/authController');
-const { isAuthenticated } = require('../middleware/auth');
+const { isAuthenticated, isnewAuthenticated } = require('../middleware/auth');
 
 
 //auth signup routes
