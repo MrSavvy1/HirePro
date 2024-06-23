@@ -40,9 +40,14 @@ const Signup = ({ role }) => {
 	return (
 		<div className="signup-container">
 <<<<<<< HEAD
+<<<<<<< HEAD
 			
 			<form onSubmit={handleSubmit} className="form-container">
 				<h2>Signup as {role}</h2>
+=======
+			<h2>Signup as {role}</h2>
+			<form onSubmit={handleSubmit}>
+>>>>>>> parent of ca3cecf (sign up and login fully functional now included color)
 =======
 			<h2>Signup as {role}</h2>
 			<form onSubmit={handleSubmit}>
