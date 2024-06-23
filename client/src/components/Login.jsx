@@ -24,13 +24,13 @@ const Login = () => {
 						} else {
 								setError('Invalid role selected');
 								return;
-						}
+				z		}
 						//console.log('This is: ${endpoint}' );
 						await axios.post(endpoint, formData);
 					if (formData.role === 'Employee') {
-							navigate('/JobListing'); // Navigate to JobListing if role is Employee
+							navigate('/joblisting'); // Navigate to JobListing if role is Employee
 					} else if (formData.role === 'Company') {
-							navigate('/PostJob'); // Navigate to PostJob if role is Company
+							navigate('/post-job'); // Navigate to PostJob if role is Company
 					}
 				} catch (error) {
 						setError('Invalid email or password');

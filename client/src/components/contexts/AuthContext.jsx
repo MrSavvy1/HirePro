@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
 		const login = async (username, password) => {
 				try {
 						setError(null);
-						const response = await axios.post('/api/login', { username, password });
+						const response = await axios.post('https://8ed859db-3274-42a7-8bfe-0f4fc51860b6-00-1bu3l2l7vxr5i.spock.replit.dev:5000/api/login', { username, password });
 						const { token } = response.data;
 						localStorage.setItem('token', token);
 						const decodedToken = jwtDecode.default(token);

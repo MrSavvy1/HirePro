@@ -48,7 +48,7 @@ function App() {
                     <Route path="/whoareyou" element={<WhoAreYou setRole={setRole} />} />
                     <Route path="/signup" element={<Signup role={role} />} />
                     <Route path="/login" element={<Login />} />
-                    <Route path="/jobs" element={<PrivateRoute element={<JobListing />} roles={['employee']} />} />
+                    <Route path="/joblisting" element={<PrivateRoute element={<JobListing />} roles={['employee']} />} />
                     <Route path="/job/:id" element={<PrivateRoute element={<JobDetails />} roles={['employee']} />} />
                     <Route path="/post-job" element={<PrivateRoute element={<JobPost />} roles={['company']} />} />
                     <Route path="/profile" element={<PrivateRoute element={<Profile />} roles={['employee', 'company']} />} />
