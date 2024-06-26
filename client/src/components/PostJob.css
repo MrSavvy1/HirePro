@@ -1,46 +1,60 @@
 .post-job-container {
-	width: 50%;
-	margin: 0 auto;
-	padding: 20px;
-	border: 1px solid #ccc;
-	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+		max-width: 800px;
+		margin: 20px auto;
+		padding: 30px;
+		background-color: #f9f9f9;
+		border-radius: 8px;
+		box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+		text-align: center; /* Center align the container content */
 }
 
 h2 {
-	text-align: center;
-	margin-bottom: 20px;
+		margin-bottom: 30px; /* Increased margin for better separation */
+		color: #333;
 }
 
 form {
-	display: flex;
-	flex-direction: column;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%; /* Center align form items horizontally */
 }
 
-input, textarea {
-	margin-bottom: 10px;
-	padding: 10px;
-	border: 1px solid #ccc;
-	border-radius: 5px;
+input,
+textarea,
+select {
+		width: 100%;
+		max-width: 600px;
+		margin-bottom: 20px;
+		padding: 12px;
+		border: 1px solid #ccc;
+		border-radius: 5px;
+		font-size: 16px;
+		box-sizing: border-box; /* Ensure padding is included in width */
 }
 
 textarea {
-	resize: vertical;
+		resize: vertical;
+		min-height: 100px; /* Set minimum height for textarea */
 }
 
 button {
-	padding: 10px;
-	background-color: #28a745;
-	color: white;
-	border: none;
-	border-radius: 5px;
-	cursor: pointer;
+		width: 200px; /* Fixed width for button */
+		padding: 12px;
+		background-color: #28a745;
+		color: white;
+		border: none;
+		border-radius: 5px;
+		cursor: pointer;
+		font-size: 16px;
+		transition: background-color 0.3s ease;
 }
 
 button:hover {
-	background-color: #218838;
+		background-color: #218838;
 }
 
 p {
-	text-align: center;
+		margin-top: 20px; /* Increased margin for spacing */
+		color: #666;
 }

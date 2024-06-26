@@ -1,31 +1,35 @@
-import React, { useState, useEffect, useContext } from 'react';
+// AppliedJobs.jsx
+
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { AuthContext } from './contexts/AuthContext';
 
 const AppliedJobs = () => {
-		const { user } = useContext(AuthContext);
 		const [appliedJobs, setAppliedJobs] = useState([]);
 		const [isLoading, setIsLoading] = useState(true);
 		const [error, setError] = useState('');
 
 		useEffect(() => {
 				const fetchAppliedJobs = async () => {
-						try {
-								const response = await axios.get(`/api/employees/${user.id}/appliedjobs`, {
-										headers: {
-												'Authorization': `Bearer ${localStorage.getItem('token')}`
-										}
-								});
-								setAppliedJobs(response.data);
-						} catch (error) {
-								setError('Error fetching applied jobs. Please try again later.');
-								console.error('Error fetching applied jobs:', error);
-						} finally {
+						const token = localStorage.getItem('token');
+						if (token) {
+								try {
+										const response = await axios.get('/api/employees/appliedjobs', {
+												headers: { 'Authorization': `Bearer ${token}` }
+										});
+										setAppliedJobs(response.data);
+								} catch (error) {
+										setError('Error fetching applied jobs. Please try again later.');
+										console.error('Error fetching applied jobs:', error);
+								} finally {
+										setIsLoading(false);
+								}
+						} else {
+								setError('No token found. Please log in.');
 								setIsLoading(false);
 						}
 				};
 				fetchAppliedJobs();
-		}, [user.id]);
+		}, []);
 
 		if (isLoading) {
 				return <p>Loading applied jobs...</p>;

@@ -1,34 +1,26 @@
 .job-listing-container {
-	display: flex;
-	justify-content: space-between;
 	padding: 20px;
 }
 
-.filters {
-	width: 25%;
-	padding: 10px;
-	border-right: 1px solid #ccc;
+.job-listing-container h2 {
+	text-align: center;
 }
 
-.job-list {
-	width: 70%;
-	padding: 10px;
+.job-listing-container ul {
+	list-style-type: none;
+	padding: 0;
 }
 
-.job-item {
-	margin-bottom: 20px;
-	padding: 10px;
+.job-listing-container li {
 	border: 1px solid #ccc;
-	border-radius: 5px;
+	padding: 10px;
+	margin: 10px 0;
 }
 
-h2 {
-	margin-bottom: 15px;
-}
-
-select {
-	display: block;
-	width: 100%;
-	margin-bottom: 10px;
-	padding: 8px;
+.job-listing-container button {
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
 }

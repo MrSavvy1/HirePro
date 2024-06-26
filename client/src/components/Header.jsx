@@ -1,8 +1,6 @@
+// client/src/components/Header.jsx
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-//import logo from './images/HirePro1.png'; 
-//<img src={logo} alt="HirePro Logo" className="logo-image" />
-
 import './Header.css';
 
 const Header = () => {

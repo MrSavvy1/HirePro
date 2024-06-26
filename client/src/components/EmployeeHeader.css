@@ -1,0 +1,43 @@
+.employee-header {
+	background-color: green; /* Dark background color */
+	color: #ffffff; /* Text color */
+	padding: 10px 20px; /* Padding inside header */
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for header */
+	display: flex; /* Use flexbox for layout */
+	justify-content: space-between; /* Space items evenly */
+	align-items: center; /* Center items vertically */
+}
+
+.logo {
+	flex: 1; /* Grow to take available space */
+}
+
+.logo h2 {
+	margin: 0; /* Remove default margin */
+}
+
+.nav-links {
+	list-style-type: none; /* Remove default list styling */
+	display: flex; /* Use flexbox for layout */
+	justify-content: flex-end; /* Align items to the end of the flex container */
+	padding: 0; /* Remove padding for ul */
+}
+
+.nav-links li {
+	margin-left: 20px; /* Margin between list items */
+}
+
+.nav-links li:first-child {
+	margin-left: 0; /* No margin for the first list item */
+}
+
+.nav-links li a {
+	text-decoration: none; /* Remove underline from links */
+	color: #ffffff; /* Text color */
+	font-weight: bold; /* Bold font weight */
+	transition: color 0.3s ease; /* Smooth color transition */
+}
+
+.nav-links li a:hover {
+	color: #28a745; /* Hover color (green) */
+}

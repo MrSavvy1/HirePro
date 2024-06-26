@@ -2,11 +2,15 @@ const ErrorResponse = require('../utils/errorResponse');
 const User = require('../models/userModel');
 const JobApplication = require('../models/jobApplication')
 const jwt = require('jsonwebtoken');
+const { getToken } = require('../utils/tokenStore');
 
 //check if user is authenticated
 exports.isAuthenticated = async (req, res, next) => {
-    const { token } = req.cookies;
+    console.log('isAuthenticated middleware called: ',  req.cookies.token);
+    const token = req.cookies.token || getTo;
     //make sure token exist
+
+    console.log('isAuthenticated token ',  token);
     if (!token) {
         res.status(401).json({
             "error": "Kindly login to access this endpoint"
@@ -44,7 +48,7 @@ exports.isAdmin = async (req, res, next) => {
 
 //middleware to check employee
 exports.isEmployer = async (req, res, next) => {
-    if (req.user.role === 'regular') {
+    if (req.user.role === 'company') {
         res.status(401).json({
             "error": "Only Employers or Admins can access"
         });

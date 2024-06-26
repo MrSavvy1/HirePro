@@ -1,86 +1,89 @@
 const User = require('../models/userModel');
-const ErrorResponse = require('../utils/errorResponse');
+const { setToken } = require('../utils/tokenStore');  // Import the setToken function
 
 exports.signup = async (req, res, next) => {
     const { email } = req.body;
-    const userExist = await User.findOne({email});
+    const userExist = await User.findOne({ email });
 
-    if (userExist){
+    if (userExist) {
         res.status(400).json({
-            "error": "E-mail already exist"
-        })
-        //return next(new ErrorResponse("E-mail already exist", 400));
+            error: "E-mail already exist"
+        });
+        return;
     }
     try {
         const user = await User.create(req.body);
         res.status(201).json({
             success: true,
             user
-        })
-    } catch (error){
+        });
+    } catch (error) {
         next(error);
     }
-}
+};
 
 exports.signin = async (req, res, next) => {
     try {
-        const {email, password} = req.body;
-        // validation
+        const { email, password } = req.body;
+
+        // Validation
         if (!email) {
             res.status(400).json({
-                "error": "Email address is requires"
+                error: "Email address is required"
             });
-            //return next(new ErrorResponse("Email address is requires", 400));
+            return;
         }
-        if (!password){
+        if (!password) {
             res.status(400).json({
-                "error": "Password field is empty"
-            })
-            //return next(new ErrorResponse("Password field is empty", 400));
+                error: "Password field is empty"
+            });
+            return;
         }
 
-        // check user is valid
-        const user = await User.findOne({email});
-        if (!user){
+        // Check user is valid
+        const user = await User.findOne({ email });
+        if (!user) {
             res.status(403).json({
-                "error": "Invalid Email, Please signup if your are a new user"
+                error: "Invalid Email, Please signup if you are a new user"
             });
-            //return next(new ErrorResponse("Invalid Email, Please signup if your are a new user", 403));
-        }
-        //check password
-        const checkPwd = await user.comparePassword(password)
-        if (!checkPwd){
-            res.status(403).json({
-                "error": "Wrong Pasword"
-            });
-            //return next(new ErrorResponse("Invalid Password", 403));
+            return;
         }
 
-        //send token
+        // Check password
+        const checkPwd = await user.comparePassword(password);
+        if (!checkPwd) {
+            res.status(403).json({
+                error: "Wrong Password"
+            });
+            return;
+        }
+
+        // Send token
         sendTokenResponse(user, 200, res);
     } catch (error) {
         next(error);
     }
-
-}
+};
 
 const sendTokenResponse = async (user, codeStatus, res) => {
     const token = await user.getJwtToken();
+    setToken(token);  // Store the token in the shared module
+    console.log('here is the : ', token);
     res.status(codeStatus)
-        .cookie('token', token, {maxAge: 60*60*24*1000, httpOnly: true})
+        .cookie('token', token, { maxAge: 60 * 60 * 24 * 1000, httpOnly: true })
         .json({
             success: true, token, user
-        })
-}
+        });
+};
 
-// logout
+// Logout
 exports.logout = (req, res, next) => {
     res.clearCookie('token');
     res.status(200).json({
         success: true,
         message: "Logged out successfully"
-    })
-}
+    });
+};
 
 // UserProfile
 exports.userProfile = async (req, res, next) => {
@@ -89,9 +92,9 @@ exports.userProfile = async (req, res, next) => {
 
         if (!user) {
             res.status(404).json({
-                "error": "User not found"
+                error: "User not found"
             });
-            //return next(new ErrorResponse("User not found", 404));
+            return;
         }
         res.status(200).json({
             success: true,

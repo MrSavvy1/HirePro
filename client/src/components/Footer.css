@@ -1,0 +1,12 @@
+.employee-footer {
+		background-color: green; /* Dark background color */
+		color: white; /* Text color */
+		padding: 10px 20px; /* Padding inside footer */
+		margin-top: auto; /* Push footer to the bottom */
+		text-align: center;
+		font-size: 30px;/* Center align text */
+}
+
+p {
+	color: white;
+}

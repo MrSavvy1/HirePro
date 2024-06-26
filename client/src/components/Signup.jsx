@@ -1,17 +1,18 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import "./Signup.css";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import './Signup.css';
 
 const Signup = ({ role }) => {
 	const [formData, setFormData] = useState({
-		name: "",
-		email: "",
-		password: "",
-		confirmPassword: ""
+		name: '',
+		email: '',
+		password: '',
+		confirmPassword: '',
+		role: role
 	});
 
-	const [error, setError] = useState("");
+	const [error, setError] = useState('');
 	const navigate = useNavigate();
 
 	const handleChange = (e) => {
@@ -19,44 +20,30 @@ const Signup = ({ role }) => {
 		setFormData({ ...formData, [name]: value });
 	};
 
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		if (formData.password !== formData.confirmPassword) {
-			setError("Passwords do not match");
-			return;
-		}
+		const handleSubmit = async (e) => {
+			e.preventDefault();
+			if (formData.password !== formData.confirmPassword) {
+				setError('Passwords do not match');
+				return;
+			}
 
-		try {
-			console.log(`Role: ${role}`);
-			console.log("FormData:", formData);
-			await axios.post(`https://8ed859db-3274-42a7-8bfe-0f4fc51860b6-00-1bu3l2l7vxr5i.spock.replit.dev:5000/api/auth/signup/${role.toLowerCase()}`, formData);
-			navigate("/login");
-		} catch (err) {
-			console.error("Signup error:", err);
-			setError("An error occurred during signup");
-		}
+			try {
+				console.log(`Role: ${role}`);
+				console.log('FormData:', formData);
+				await axios.post(`https://8ed859db-3274-42a7-8bfe-0f4fc51860b6-00-1bu3l2l7vxr5i.spock.replit.dev:8000/api/signup`, formData);
+				navigate('/login');
+			} catch (err) {
+				console.error('Signup error:', err);
+				setError('An error occurred during signup');
+			
+		};
+
 	};
 
 	return (
 		<div className="signup-container">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-			
-			<form onSubmit={handleSubmit} className="form-container">
-				<h2>Signup as {role}</h2>
-=======
 			<h2>Signup as {role}</h2>
 			<form onSubmit={handleSubmit}>
->>>>>>> parent of ca3cecf (sign up and login fully functional now included color)
-=======
-			<h2>Signup as {role}</h2>
-			<form onSubmit={handleSubmit}>
->>>>>>> parent of ca3cecf (sign up and login fully functional now included color)
-=======
-			<h2>Signup as {role}</h2>
-			<form onSubmit={handleSubmit}>
->>>>>>> parent of ca3cecf (sign up and login fully functional now included color)
 				<input
 					type="text"
 					name="name"

@@ -86,36 +86,3 @@ button {
 h1 {
   margin-top: 50px;
 }
-
-.App {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-header {
-  background: #f8f9fa;
-  padding: 10px 20px;
-  border-bottom: 1px solid #dee2e6;
-  margin-bottom: 20px;
-}
-
-header nav ul {
-  list-style-type: none;
-  display: flex;
-  gap: 10px;
-  padding: 0;
-}
-
-header nav ul li {
-  display: inline;
-}
-
-header nav ul li a {
-  text-decoration: none;
-  color: #007bff;
-}
-
-header nav ul li a:hover {
-  text-decoration: underline;
-}

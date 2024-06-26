@@ -1,33 +1,52 @@
-import React, { useState, useEffect, useContext } from 'react';
+// Profile.jsx
+
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { AuthContext } from './contexts/AuthContext';
 
 const Profile = () => {
-		const { user } = useContext(AuthContext);
 		const [profile, setProfile] = useState({
-				image: '', experience: '', education: '', about: '', achievements: '', jobTitle: ''
+				image: '',
+				experience: '',
+				education: '',
+				about: '',
+				achievements: '',
+				jobTitle: ''
 		});
 		const [isLoading, setIsLoading] = useState(true);
 		const [error, setError] = useState('');
+		const [userId, setUserId] = useState(null);
 
 		useEffect(() => {
-				const fetchProfile = async () => {
-						try {
-								const response = await axios.get(`/api/profile/${user.id}`, {
-										headers: {
-												'Authorization': `Bearer ${localStorage.getItem('token')}`
-										}
-								});
-								setProfile(response.data);
-						} catch (error) {
-								setError('Error fetching profile. Please try again later.');
-								console.error('Error fetching profile:', error);
-						} finally {
-								setIsLoading(false);
-						}
-				};
-				fetchProfile();
-		}, [user.id]);
+				const token = localStorage.getItem('token');
+				if (token) {
+						const decodedToken = JSON.parse(atob(token.split('.')[1]));
+						setUserId(decodedToken.id);
+				} else {
+						setError('No token found. Please log in.');
+						setIsLoading(false);
+				}
+		}, []);
+
+		useEffect(() => {
+				if (userId) {
+						const fetchProfile = async () => {
+								try {
+										const response = await axios.get(`/api/profile/${userId}`, {
+												headers: {
+														'Authorization': `Bearer ${localStorage.getItem('token')}`
+												}
+										});
+										setProfile(response.data);
+								} catch (error) {
+										setError('Error fetching profile. Please try again later.');
+										console.error('Error fetching profile:', error);
+								} finally {
+										setIsLoading(false);
+								}
+						};
+						fetchProfile();
+				}
+		}, [userId]);
 
 		const handleChange = (e) => {
 				setProfile({ ...profile, [e.target.name]: e.target.value });
@@ -42,7 +61,7 @@ const Profile = () => {
 								setError('Experience field cannot be empty.');
 								return;
 						}
-						await axios.put(`/api/profile/${user.id}`, updatedProfile, {
+						await axios.put(`/api/profile/${userId}`, updatedProfile, {
 								headers: {
 										'Authorization': `Bearer ${localStorage.getItem('token')}`
 								}

@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from './Header';
+import Footer from './Footer';
 import { Link } from 'react-router-dom';
 
 const Home = () => {
@@ -10,6 +11,7 @@ const Home = () => {
 				<h1>Welcome to HirePro</h1>
 				
 			</div>
+			<Footer />
 		</div>
 	);
 };
