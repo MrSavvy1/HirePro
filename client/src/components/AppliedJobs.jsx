@@ -1,5 +1,3 @@
-// AppliedJobs.jsx
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
@@ -10,24 +8,17 @@ const AppliedJobs = () => {
 
 		useEffect(() => {
 				const fetchAppliedJobs = async () => {
-						const token = localStorage.getItem('token');
-						if (token) {
-								try {
-										const response = await axios.get('/api/employees/appliedjobs', {
-												headers: { 'Authorization': `Bearer ${token}` }
-										});
-										setAppliedJobs(response.data);
-								} catch (error) {
-										setError('Error fetching applied jobs. Please try again later.');
-										console.error('Error fetching applied jobs:', error);
-								} finally {
-										setIsLoading(false);
-								}
-						} else {
-								setError('No token found. Please log in.');
+						try {
+								const response = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/employees/appliedjobs');
+								setAppliedJobs(response.data);
+						} catch (error) {
+								setError('Error fetching applied jobs. Please try again later.');
+								console.error('Error fetching applied jobs:', error);
+						} finally {
 								setIsLoading(false);
 						}
 				};
+
 				fetchAppliedJobs();
 		}, []);
 

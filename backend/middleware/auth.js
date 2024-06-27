@@ -7,7 +7,8 @@ const { getToken } = require('../utils/tokenStore');
 //check if user is authenticated
 exports.isAuthenticated = async (req, res, next) => {
     console.log('isAuthenticated middleware called: ',  req.cookies.token);
-    const token = req.cookies.token || getTo;
+    const token = req.cookies.token || getToken();
+
     //make sure token exist
 
     console.log('isAuthenticated token ',  token);

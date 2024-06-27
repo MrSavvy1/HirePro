@@ -9,9 +9,17 @@
 }
 
 .logo {
-	flex: 1; /* Grow to take available space */
+	font-size: 24px;
+	font-weight: bold;
+	display: flex;
+	flex: 1;
+
 }
 
+.logo-img {
+		max-width: 60px; /* Adjust max-width according to your design */
+		height: auto;
+}
 .logo h2 {
 	margin: 0; /* Remove default margin */
 }

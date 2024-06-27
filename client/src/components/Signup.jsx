@@ -30,7 +30,7 @@ const Signup = ({ role }) => {
 			try {
 				console.log(`Role: ${role}`);
 				console.log('FormData:', formData);
-				await axios.post(`https://8ed859db-3274-42a7-8bfe-0f4fc51860b6-00-1bu3l2l7vxr5i.spock.replit.dev:8000/api/signup`, formData);
+				await axios.post(`https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/signup`, formData);
 				navigate('/login');
 			} catch (err) {
 				console.error('Signup error:', err);

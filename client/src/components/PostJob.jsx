@@ -1,80 +1,103 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './PostJob.css';
+
+const jobTypes = ['Finance/Sales', 'Administration', 'Law', 'Health', 'Agriculture', 'Engineering', 'Tech'];
 
 const PostJob = () => {
-		const [job, setJob] = useState({
+		const [jobDetails, setJobDetails] = useState({
 				title: '',
 				description: '',
 				location: '',
-				available: true,
+				available: true, // Initialize available as true
 				salary: '',
-				userId: '', // Assuming this will be handled on the server-side
-				datePosted: new Date(),
+				datePosted: '',
 				applicationDeadline: '',
 				jobCategory: ''
 		});
+		const [existingJobCategories, setExistingJobCategories] = useState([]);
+
+		useEffect(() => {
+				// Fetch existing job categories
+				const fetchJobCategories = async () => {
+						try {
+								const response = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobCat/all');
+								setExistingJobCategories(response.data.allCat.map(cat => cat.jobTypeName));
+						} catch (error) {
+								console.error('Error fetching job categories:', error);
+						}
+				};
+
+				fetchJobCategories();
+		}, []);
 
 		const handleChange = (e) => {
-				const { name, value } = e.target;
-				setJob({
-						...job,
-						[name]: value
+				const { name, value, type, checked } = e.target;
+				const val = type === 'checkbox' ? checked : value;
+				setJobDetails({
+						...jobDetails,
+						[name]: val
 				});
 		};
 
 		const handleSubmit = async (e) => {
 				e.preventDefault();
+				const selectedCategory = jobDetails.jobCategory;
+
 				try {
-						await axios.post('https://8ed859db-3274-42a7-8bfe-0f4fc51860b6-00-1bu3l2l7vxr5i.spock.replit.dev:8000/api/jobs', job);
-						alert('Job posted successfully!');
+						// Check if the job category exists
+						if (!existingJobCategories.includes(selectedCategory)) {
+								// Create new job category if it doesn't exist
+								await axios.post('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobCat/create', { jobTypeName: selectedCategory });
+								alert(`Job category '${selectedCategory}' created successfully`);
+								// Refresh the list of existing job categories
+								const response = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobCat/all');
+								setExistingJobCategories(response.data.allCat.map(cat => cat.jobTypeName));
+						}
+
+						// Post the job
+						await axios.post('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobs', jobDetails);
+						alert('Job posted successfully');
 				} catch (error) {
 						console.error('Error posting job:', error);
-						alert('Failed to post job');
 				}
 		};
 
 		return (
-				<div className="post-job-container">
+				<div>
 						<h2>Post a Job</h2>
 						<form onSubmit={handleSubmit}>
-								<div>
-										<label>Job Title</label>
-										<input type="text" name="title" value={job.title} onChange={handleChange} required />
-								</div>
-								<div>
-										<label>Location</label>
-										<input type="text" name="location" value={job.location} onChange={handleChange} required />
-								</div>
-								{/* Assuming "available" is a checkbox */}
-								<div>
-										<label>Available</label>
-										<input type="checkbox" name="available" checked={job.available} onChange={(e) => setJob({ ...job, available: e.target.checked })} />
-								</div>
-								<div>
-										<label>Job Description</label>
-										<textarea name="description" value={job.description} onChange={handleChange} required></textarea>
-								</div>
-								<div>
-										<label>Salary</label>
-										<input type="text" name="salary" value={job.salary} onChange={handleChange} required />
-								</div>
-								<div>
-										<label>Date Posted</label>
-										<input type="date" name="datePosted" value={job.datePosted} onChange={handleChange} required />
-								</div>
-								<div>
-										<label>Application Deadline</label>
-										<input type="date" name="applicationDeadline" value={job.applicationDeadline} onChange={handleChange} required />
-								</div>
-								<div>
-										<label>Job Category</label>
-										<input type="text" name="jobCategory" value={job.jobCategory} onChange={handleChange} required />
-								</div>
+								<label>Title:</label>
+								<input type="text" name="title" value={jobDetails.title} onChange={handleChange} />
+
+								<label>Description:</label>
+								<textarea name="description" value={jobDetails.description} onChange={handleChange}></textarea>
+
+								<label>Location:</label>
+								<input type="text" name="location" value={jobDetails.location} onChange={handleChange} />
+
+								<label>Available:</label>
+								<input type="checkbox" name="available" checked={jobDetails.available} onChange={handleChange} />
+
+								<label>Salary:</label>
+								<input type="number" name="salary" value={jobDetails.salary} onChange={handleChange} />
+
+								<label>Date Posted:</label>
+								<input type="date" name="datePosted" value={jobDetails.datePosted} onChange={handleChange} />
+
+								<label>Application Deadline:</label>
+								<input type="date" name="applicationDeadline" value={jobDetails.applicationDeadline} onChange={handleChange} />
+
+								<label>Job Category:</label>
+								<select name="jobCategory" value={jobDetails.jobCategory} onChange={handleChange}>
+										<option value="">--Select Category--</option>
+										{jobTypes.map(type => (
+												<option key={type} value={type}>{type}</option>
+										))}
+								</select>
+
 								<button type="submit">Post Job</button>
 						</form>
 				</div>
-			
 		);
 };
 

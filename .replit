@@ -1,1 +1,10 @@
 modules = ["nodejs-20"]
+
+[[ports]]
+localPort = 5173
+externalPort = 5173
+exposeLocalhost = true
+
+[[ports]]
+localPort = 8000
+externalPort = 8000
