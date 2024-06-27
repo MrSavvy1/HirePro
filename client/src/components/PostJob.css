@@ -1,60 +1,80 @@
+body, html {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	font-family: Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
 .post-job-container {
-		max-width: 800px;
-		margin: 20px auto;
-		padding: 30px;
-		background-color: #f9f9f9;
-		border-radius: 8px;
-		box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-		text-align: center; /* Center align the container content */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	max-width: 500px;
+	padding: 20px;
+	background-color: #f9f9f9;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	margin: 20px;
 }
 
-h2 {
-		margin-bottom: 30px; /* Increased margin for better separation */
-		color: #333;
+.post-job-container h2 {
+	text-align: center;
+	margin-bottom: 20px;
+	align-items: center;
+	justifiy-content: center;
 }
 
-form {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		width: 100%; /* Center align form items horizontally */
+.post-job-container form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
 }
 
-input,
-textarea,
-select {
-		width: 100%;
-		max-width: 600px;
-		margin-bottom: 20px;
-		padding: 12px;
-		border: 1px solid #ccc;
-		border-radius: 5px;
-		font-size: 16px;
-		box-sizing: border-box; /* Ensure padding is included in width */
+.post-job-container label {
+	margin-top: 10px;
+	margin-bottom: 5px;
 }
 
-textarea {
-		resize: vertical;
-		min-height: 100px; /* Set minimum height for textarea */
+.post-job-container input,
+.post-job-container textarea,
+.post-job-container select {
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	width: 100%;
+	box-sizing: border-box;
 }
 
-button {
-		width: 200px; /* Fixed width for button */
-		padding: 12px;
-		background-color: #28a745;
-		color: white;
-		border: none;
-		border-radius: 5px;
-		cursor: pointer;
-		font-size: 16px;
-		transition: background-color 0.3s ease;
+.post-job-container button {
+	margin-top: 20px;
+	padding: 10px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s;
 }
 
-button:hover {
-		background-color: #218838;
+.post-job-container button:hover {
+	background-color: #45a049;
 }
 
-p {
-		margin-top: 20px; /* Increased margin for spacing */
-		color: #666;
+/* Responsive design */
+@media (max-width: 768px) {
+	.post-job-container {
+			padding: 15px;
+	}
+}
+
+@media (max-width: 480px) {
+	.post-job-container {
+			padding: 10px;
+	}
 }

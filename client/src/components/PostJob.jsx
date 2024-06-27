@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './PostJob.css';
 
 const predefinedJobTypes = ['Finance/Sales', 'Administration', 'Law', 'Health', 'Agriculture', 'Engineering', 'Tech'];
 
@@ -74,7 +75,7 @@ const PostJob = () => {
 		];
 
 		return (
-				<div>
+				<div className="post-job-container">
 						<h2>Post a Job</h2>
 						<form onSubmit={handleSubmit}>
 								<label>Title:</label>
