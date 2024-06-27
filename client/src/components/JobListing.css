@@ -1,53 +1,26 @@
-/* JobListing.css */
-
 .job-listing-container {
-		padding: 20px;
-		background-color: #f9f9f9;
+	padding: 20px;
 }
 
 .job-listing-container h2 {
-		text-align: center;
-		margin-bottom: 20px;
+	text-align: center;
 }
 
-.job-list {
-		display: flex;
-		flex-direction: column;
-		gap: 20px;
+.job-listing-container ul {
+	list-style-type: none;
+	padding: 0;
 }
 
-.job-item {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		background: white;
-		border: 1px solid #ddd;
-		border-radius: 8px;
-		padding: 20px;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+.job-listing-container li {
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin: 10px 0;
 }
 
-.job-details {
-		flex-grow: 1;
-}
-
-.job-item h3 {
-		margin-top: 0;
-}
-
-.job-item p {
-		margin: 5px 0;
-}
-
-.view-details-btn {
-		padding: 10px 20px;
-		background-color: #4CAF50;
-		color: white;
-		text-decoration: none;
-		border-radius: 4px;
-		transition: background-color 0.3s;
-}
-
-.view-details-btn:hover {
-		background-color: #45a049;
+.job-listing-container button {
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
 }

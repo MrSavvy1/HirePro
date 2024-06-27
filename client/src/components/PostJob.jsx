@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const predefinedJobTypes = ['Finance/Sales', 'Administration', 'Law', 'Health', 'Agriculture', 'Engineering', 'Tech'];
+const jobTypes = ['Finance/Sales', 'Administration', 'Law', 'Health', 'Agriculture', 'Engineering', 'Tech'];
 
 const PostJob = () => {
 		const [jobDetails, setJobDetails] = useState({
@@ -21,7 +21,7 @@ const PostJob = () => {
 				const fetchJobCategories = async () => {
 						try {
 								const response = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobCat/all');
-								setExistingJobCategories(response.data.allCat);
+								setExistingJobCategories(response.data.allCat.map(cat => cat.jobTypeName));
 						} catch (error) {
 								console.error('Error fetching job categories:', error);
 						}
@@ -44,34 +44,23 @@ const PostJob = () => {
 				const selectedCategory = jobDetails.jobCategory;
 
 				try {
-						let categoryId = existingJobCategories.find(cat => cat.jobTypeName === selectedCategory)?._id;
-
 						// Check if the job category exists
-						if (!categoryId) {
+						if (!existingJobCategories.includes(selectedCategory)) {
 								// Create new job category if it doesn't exist
-								const response = await axios.post('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobCat/create', { jobTypeName: selectedCategory });
-								categoryId = response.data._id;
+								await axios.post('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobCat/create', { jobTypeName: selectedCategory });
 								alert(`Job category '${selectedCategory}' created successfully`);
-
 								// Refresh the list of existing job categories
-								const allCategoriesResponse = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobCat/all');
-								setExistingJobCategories(allCategoriesResponse.data.allCat);
+								const response = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobCat/all');
+								setExistingJobCategories(response.data.allCat.map(cat => cat.jobTypeName));
 						}
 
-						// Post the job with the category ID
-						const jobData = { ...jobDetails, jobCategory: categoryId };
-						await axios.post('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobs', jobData);
+						// Post the job
+						await axios.post('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobs', jobDetails);
 						alert('Job posted successfully');
 				} catch (error) {
 						console.error('Error posting job:', error);
 				}
 		};
-
-		// Merge predefined job types and existing job categories, avoiding duplicates
-		const mergedJobTypes = [
-				...predefinedJobTypes,
-				...existingJobCategories.map(cat => cat.jobTypeName).filter(cat => !predefinedJobTypes.includes(cat))
-		];
 
 		return (
 				<div>
@@ -101,7 +90,7 @@ const PostJob = () => {
 								<label>Job Category:</label>
 								<select name="jobCategory" value={jobDetails.jobCategory} onChange={handleChange}>
 										<option value="">--Select Category--</option>
-										{mergedJobTypes.map(type => (
+										{jobTypes.map(type => (
 												<option key={type} value={type}>{type}</option>
 										))}
 								</select>

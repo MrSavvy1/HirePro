@@ -1,17 +1,15 @@
 import React from 'react';
 import Header from './Header';
 import Footer from './Footer';
-import home from '../assets/Home.png';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 	return (
 		<div className="container">
 			<Header />
 			<div className="content">
-				<img src={home} alt="home pic" className="home-img" />
-				<div className="home-content">
-					<h1>Welcome to HirePro</h1>
-				</div>
+				<h1>Welcome to HirePro</h1>
+				
 			</div>
 			<Footer />
 		</div>
