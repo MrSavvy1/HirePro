@@ -1,47 +1,64 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 import './JobListing.css';
 
-
 const JobListing = () => {
-		const [jobs, setJobs] = useState([]); // Ensure jobs state is initialized as an array
+		const [jobs, setJobs] = useState([]);
+		const [loading, setLoading] = useState(true);
+		const [error, setError] = useState('');
 
 		useEffect(() => {
 				const fetchJobs = async () => {
 						try {
-								const response = await axios.get('/api/jobs');
-								setJobs(response.data);
+								const response = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/alljobs');
+								if (response.data.success && Array.isArray(response.data.data)) {
+										setJobs(response.data.data);
+								} else {
+										setError('Unexpected data format from API');
+								}
 						} catch (error) {
-								console.error('Error fetching jobs:', error);
+								setError('Error fetching jobs');
+						} finally {
+								setLoading(false);
 						}
 				};
 
 				fetchJobs();
 		}, []);
 
-		// Ensure jobs is always an array before mapping
-		if (!Array.isArray(jobs)) {
-				return (
-						<div className="job-listing-container">
-								<h2>Available Jobs</h2>
-								<p>No jobs available at the moment.</p>
-						</div>
-				);
+		if (loading) {
+				return <p>Loading...</p>;
 		}
+
+		if (error) {
+				return <p>{error}</p>;
+		}
+
+		// Filter jobs to show only those that are available
+		const availableJobs = jobs.filter(job => job.available);
 
 		return (
 				<div className="job-listing-container">
 						<h2>Available Jobs</h2>
-						<ul>
-								{jobs.map((job) => (
-										<li key={job.id}>
-												<h3>{job.title}</h3>
-												<p>{job.description}</p>
-												<button>Apply</button>
-										</li>
-								))}
-						</ul>
-				
+						{availableJobs.length === 0 ? (
+								<p>No jobs available at the moment.</p>
+						) : (
+								<div className="job-list">
+										{availableJobs.map((job) => (
+												<div key={job._id} className="job-item">
+														<div className="job-details">
+																<h3>{job.title}</h3>
+																<p><strong>Salary:</strong> {job.salary}</p>
+																<p><strong>Location:</strong> {job.location}</p>
+														</div>
+														<div className="job-action">
+																<Link to={`/job/${job._id}`} className="view-details-btn">View Details</Link>
+														</div>
+												</div>
+										))}
+								</div>
+						)}
 				</div>
 		);
 };
