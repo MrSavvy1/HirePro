@@ -3,137 +3,72 @@ import axios from 'axios';
 import './CompanyJobs.css';
 
 const CompanyJobs = () => {
-		const [jobs, setJobs] = useState([]);
-		const [loading, setLoading] = useState(true);
-		const [error, setError] = useState(null);
-		const [editingJob, setEditingJob] = useState(null);
-		const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
-		const [deleteJobId, setDeleteJobId] = useState(null);
+	const [jobs, setJobs] = useState([]);
+	const [loading, setLoading] = useState(true);
+	const [error, setError] = useState(null);
+	const [userId, setUserId] = useState(null);
+	const [cvs, setCvs] = useState({});
 
-		useEffect(() => {
-				const fetchCompanyJobs = async () => {
-						try {
-								const response = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/alljobs');
-								setJobs(response.data);
-								setLoading(false);
-						} catch (error) {
-								setError('Failed to fetch jobs. Please try again.');
-								setLoading(false);
-						}
-				};
-				fetchCompanyJobs();
-		}, []);
+	useEffect(() => {
+		const fetchUserData = async () => {
+			try {
+				console.log('Fetching user data...');
+				const userResponse = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/mydata');
+				console.log('User Data:', userResponse.data);
+				const userId = userResponse.data.id;
+				setUserId(userId);
 
-		const handleDelete = async (id) => {
-				try {
-						await axios.delete(`https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobs/${id}`);
-						setJobs(jobs.filter(job => job.id !== id));
-						setShowDeleteConfirm(false);
-				} catch (error) {
-						setError('Failed to delete job. Please try again.');
-				}
+				console.log('Fetching all jobs...');
+				const jobsResponse = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/alljobs');
+				console.log('Jobs Data:', jobsResponse.data);
+
+				const filteredJobs = jobsResponse.data.data.filter(job => job.userId === userId);
+				console.log('Filtered Jobs:', filteredJobs);
+				setJobs(filteredJobs);
+
+				// Fetch CVs for each job
+				const cvPromises = filteredJobs.map(job =>
+					axios.get(`https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/getcv/${job.id}`)
+				);
+				const cvResponses = await Promise.all(cvPromises);
+				const cvData = cvResponses.reduce((acc, cvResponse, index) => {
+					acc[filteredJobs[index].id] = cvResponse.data;
+					return acc;
+				}, {});
+				console.log('CV Data:', cvData);
+				setCvs(cvData);
+
+				setLoading(false);
+			} catch (error) {
+				console.error('Error fetching data:', error);
+				setError('Failed to fetch data. Please try again.');
+				setLoading(false);
+			}
 		};
+		fetchUserData();
+	}, []);
 
-		const handleEdit = (job) => {
-				setEditingJob(job);
-		};
-
-		const handleEditChange = (e) => {
-				setEditingJob({ ...editingJob, [e.target.name]: e.target.value });
-		};
-
-		const handleEditSubmit = async (e) => {
-				e.preventDefault();
-				try {
-						await axios.put(`https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobs/${editingJob.id}`, editingJob);
-						setJobs(jobs.map(job => job.id === editingJob.id ? editingJob : job));
-						setEditingJob(null);
-				} catch (error) {
-						setError('Failed to update job. Please try again.');
-				}
-		};
-
-		return (
-				<div className="company-jobs-container">
-						<h2>Posted Jobs</h2>
-						{loading && <p>Loading jobs...</p>}
-						{error && <p className="error">{error}</p>}
-						<ul>
-								{Array.isArray(jobs) && jobs.map(job => (
-										<li key={job.id} className="job-item">
-												<h3>{job.title}</h3>
-												<button onClick={() => { setShowDeleteConfirm(true); setDeleteJobId(job.id); }}>Delete</button>
-												<button onClick={() => handleEdit(job)}>Edit</button>
-										</li>
-								))}
-						</ul>
-
-						{showDeleteConfirm && (
-								<div className="modal">
-										<p>Are you sure you want to delete this job?</p>
-										<button onClick={() => handleDelete(deleteJobId)}>Yes</button>
-										<button onClick={() => setShowDeleteConfirm(false)}>No</button>
-								</div>
+	return (
+		<div className="company-jobs-container">
+			<h2>Posted Jobs</h2>
+			{loading && <p>Loading jobs...</p>}
+			{error && <p className="error">{error}</p>}
+			<ul>
+				{jobs.map(job => (
+					<li key={job.id} className="job-item">
+						<h3>{job.title}</h3>
+						{cvs[job.id] ? (
+							<a href={`https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/getcv/${job.id}`} download>
+								Download CV
+							</a>
+						) : (
+							<p>No CV available</p>
 						)}
-
-						{editingJob && (
-								<div className="modal">
-										<form onSubmit={handleEditSubmit}>
-												<h2>Edit Job</h2>
-												<input
-														type="text"
-														name="title"
-														placeholder="Job Title"
-														value={editingJob.title}
-														onChange={handleEditChange}
-														required
-												/>
-												<textarea
-														name="description"
-														placeholder="Job Description"
-														value={editingJob.description}
-														onChange={handleEditChange}
-														required
-												/>
-												<input
-														type="text"
-														name="location"
-														placeholder="Location"
-														value={editingJob.location}
-														onChange={handleEditChange}
-														required
-												/>
-												<input
-														type="text"
-														name="experience"
-														placeholder="Experience Level"
-														value={editingJob.experience}
-														onChange={handleEditChange}
-														required
-												/>
-												<input
-														type="text"
-														name="type"
-														placeholder="Job Type"
-														value={editingJob.type}
-														onChange={handleEditChange}
-														required
-												/>
-												<input
-														type="text"
-														name="salary"
-														placeholder="Salary Range"
-														value={editingJob.salary}
-														onChange={handleEditChange}
-														required
-												/>
-												<button type="submit">Update Job</button>
-												<button onClick={() => setEditingJob(null)}>Cancel</button>
-										</form>
-								</div>
-						)}
-				</div>
-		);
+					</li>
+				))}
+			</ul>
+		</div>
+	);
 };
 
 export default CompanyJobs;
