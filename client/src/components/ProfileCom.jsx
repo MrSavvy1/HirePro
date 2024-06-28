@@ -49,7 +49,7 @@ const Profile = () => {
 								<div>
 										<p>Name: {user.name}</p>
 										<p>Email: {user.email}</p>
-										<p>Role: Regular</p>
+										<p>Role: Company</p>
 										<button onClick={handleLogout}>Logout</button>
 								</div>
 						)}

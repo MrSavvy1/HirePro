@@ -13,7 +13,7 @@ const CompanyJobs = () => {
 		useEffect(() => {
 				const fetchCompanyJobs = async () => {
 						try {
-								const response = await axios.get('/api/company/jobs');
+								const response = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/alljobs');
 								setJobs(response.data);
 								setLoading(false);
 						} catch (error) {
@@ -26,7 +26,7 @@ const CompanyJobs = () => {
 
 		const handleDelete = async (id) => {
 				try {
-						await axios.delete(`/api/jobs/${id}`);
+						await axios.delete(`https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobs/${id}`);
 						setJobs(jobs.filter(job => job.id !== id));
 						setShowDeleteConfirm(false);
 				} catch (error) {
@@ -45,7 +45,7 @@ const CompanyJobs = () => {
 		const handleEditSubmit = async (e) => {
 				e.preventDefault();
 				try {
-						await axios.put(`/api/jobs/${editingJob.id}`, editingJob);
+						await axios.put(`https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobs/${editingJob.id}`, editingJob);
 						setJobs(jobs.map(job => job.id === editingJob.id ? editingJob : job));
 						setEditingJob(null);
 				} catch (error) {
@@ -59,7 +59,7 @@ const CompanyJobs = () => {
 						{loading && <p>Loading jobs...</p>}
 						{error && <p className="error">{error}</p>}
 						<ul>
-								{jobs.map(job => (
+								{Array.isArray(jobs) && jobs.map(job => (
 										<li key={job.id} className="job-item">
 												<h3>{job.title}</h3>
 												<button onClick={() => { setShowDeleteConfirm(true); setDeleteJobId(job.id); }}>Delete</button>

@@ -11,7 +11,8 @@ import JobDetails from './components/JobDetails';
 import JobPost from './components/PostJob';
 import Footer from './components/Footer';
 import Profile from './components/Profile';
-import AppliedJobs from './components/AppliedJobs';
+import ProfileCom from './components/ProfileCom';
+//import AppliedJobs from './components/AppliedJobs';
 import CompanyJobs from './components/CompanyJobs';
 //import CreateJobCategory from './components/CreateJobCategory';
 import './App.css';
@@ -29,9 +30,9 @@ function App() {
         if (!isAuthenticated) {
             return <Navigate to="/login" />;
         }
-        if (roles && !roles.includes(role)) {
-            return <Navigate to="/" />;
-        }
+       // if (roles && !roles.includes(role)) {
+      //      return <Navigate to="/" />;
+      //  }
         return element;
     };
 
@@ -49,13 +50,13 @@ function App() {
                     <Route path="/joblisting" element={<PrivateRoute element={<> <EmployeeHeader /> <JobListing /> <Footer /> </>} roles={['regular']} />} />
                     <Route path="/job/:id" element={<PrivateRoute element={<> <EmployeeHeader /> <JobDetails /> <Footer /> </>} roles={['regular']} />} />
                     <Route path="/profile" element={<PrivateRoute element={<> <EmployeeHeader /> <Profile /> <Footer /> </>} roles={['regular']} />} />
-                    <Route path="/applied-jobs" element={<PrivateRoute element={<AppliedJobs />} roles={['regular']} />} />
+                    {/*  <Route path="/applied-jobs" element={<PrivateRoute element={<AppliedJobs />} roles={['regular']} />} /> */}
                     {/* Company User Routes */}
                     {/* <Route path="/jobcat" element={<PrivateRoute element={<>  <CompanyHeader /> <CreateJobCategory /> <Footer /> </>} roles={['company']} />} />   */}
                     
                     <Route path="/post-job" element={<PrivateRoute element={<>  <CompanyHeader /> <JobPost /> <Footer /> </>} roles={['company']} />} />
                      
-                    <Route path="/profile" element={<PrivateRoute element={<>  <CompanyHeader /> <Profile /> <Footer /> </>} roles={['company']} />} />
+                    <Route path="/profilecom" element={<PrivateRoute element={<>  <CompanyHeader />  <ProfileCom /> <Footer /> </>} roles={['company']} />} />
                     <Route path="/company-jobs" element={<PrivateRoute element={<>  <CompanyHeader /> <CompanyJobs /> <Footer /> </>} roles={['company']} />} />
                 </Routes>
             </div>
