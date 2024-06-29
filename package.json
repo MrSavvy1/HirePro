@@ -1,4 +1,4 @@
-{
+{"homepage": "https://github.com/MrSavvy1/github.io/HirePro",
   "name": "hirepro",
   "version": "1.0.0",
   "main": "index.js",
@@ -9,6 +9,8 @@
     "vary": "^1.1.2"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Saviour Edethu",
