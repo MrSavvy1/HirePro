@@ -35,7 +35,7 @@ const JobListing = () => {
 				return <p>{error}</p>;
 		}
 
-
+git 
 		const availableJobs = jobs.filter(job => job.available);
 
 		return (
