@@ -75,6 +75,8 @@ const PostJob = () => {
 		];
 
 		return (
+		
+			<div className="post-job">
 				<div className="post-job-container">
 						<h2>Post a Job</h2>
 						<form onSubmit={handleSubmit}>
@@ -110,6 +112,7 @@ const PostJob = () => {
 								<button type="submit">Post Job</button>
 						</form>
 				</div>
+			</div>
 		);
 };
 

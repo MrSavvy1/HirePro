@@ -1,27 +1,26 @@
 .company-header {
-	background-color: green; /* Dark background color */
-	color: #ffffff; /* Text color */
-	padding: 10px 20px; /* Padding inside header */
-	/*box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);  Shadow for header */
-	display: flex; /* Use flexbox for layout */
-	justify-content: space-between; /* Space items evenly */
-	align-items: center; /* Center items vertically */
+	background-color: green; 
+	color: #ffffff;
+	padding: 10px 20px;
+	display: flex; 
+	justify-content: space-between; 
+	align-items: center; 
 }
 
 .logo {
-	flex: 1; /* Grow to take available space */
+	flex: 1; 
 }
 
 .logo h2 {
 	margin: 0;
-	color: white;/* Remove default margin */
+	color: white;
 }
 
 .nav-links {
-	list-style-type: none; /* Remove default list styling */
-	display: flex; /* Use flexbox for layout */
-	justify-content: flex-end; /* Align items to the end of the flex container */
-	padding: 0; /* Remove padding for ul */
+	list-style-type: none; 
+	display: flex; 
+	justify-content: flex-end;
+	padding: 0; 
 }
 
 .nav-links li {
@@ -33,12 +32,42 @@
 }
 
 .nav-links li a {
-	text-decoration: none; /* Remove underline from links */
-	color: #ffffff; /* Text color */
-	font-weight: bold; /* Bold font weight */
-	transition: color 0.3s ease; /* Smooth color transition */
+	text-decoration: none; 
+	color: #ffffff;
+	font-weight: bold;
+	transition: color 0.3s ease; 
 }
 
 .nav-links li a:hover {
-	color: #28a745; /* Hover color (green) */
+	color: #28a745; 
+}
+
+
+@media (max-width: 768px) {
+	.company-header {
+		padding: 5px 5px;
+		font-size: 12px;
+	}
+
+	.logo h2{
+		font-size: 20px;
+	}
+
+	.logo-img{
+		width: 40px;
+	}
+}
+
+@media (max-width: 480px) {
+	.company-header {
+				padding: 5px 5px;
+				font-size: 10px;
+			}
+
+			.logo h2{
+				font-size: 16px;
+	}
+	
+	.logo-img{
+		width: 30px;
 }

@@ -1,20 +1,33 @@
-/* client/src/components/WhoAreYou.css */
-
 .whoareyou-container {
-	display: flex;
-	flex-direction: column;
-	align-items: _center;
-	margin: 50px auto;
-	max-width: 400px;
-	background: white;
-	padding: 20px;
-	border-radius: 10px;
-	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);background-color: green;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: 0px auto;
+max-width: 400px;
+background: white;
+padding: 20px;
+border-radius: 10px;
+background-color: green;
+box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+border-style: solid;
+border-color: white;
 }
 
 .whoareyou-container h2 {
 	margin-bottom: 20px;
 }
+
+
+.who-are-you{
+	padding-top: 80px;
+	background-image: url('../assets/back.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100%;
+
+
+}
+
 
 .whoareyou-container button {
 	padding: 10px 20px;

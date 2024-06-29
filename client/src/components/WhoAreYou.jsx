@@ -12,10 +12,12 @@ const WhoAreYou = ({ setRole }) => {
 	};
 
 	return (
+		<div className="who-are-you">
 		<div className="whoareyou-container">
 			<h2>Who Are You?</h2>
-			<button onClick={() => handleRoleSelection('regular')}>Employee</button>
+			<button onClick={() => handleRoleSelection('Regular')}>Employee</button>
 			<button onClick={() => handleRoleSelection('Company')}>Company</button>
+		</div>
 		</div>
 	);
 };

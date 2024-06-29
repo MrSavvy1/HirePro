@@ -2,8 +2,24 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	justify-content: center;
-	height: 100vh;
+	margin: 0px auto;
+	max-width: 400px;
+	background: white;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: green;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-style: solid;
+	border-color: white;
+}
+.signup{
+	padding-top: 80px;
+	background-image: url('../assets/back.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 100%;
+
+	
 }
 
 form {

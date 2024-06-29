@@ -3,6 +3,7 @@ const multer = require('multer');
 const { ObjectId } = require('mongoose').Types;
 
 
+
 // Multer setup
 const storage = multer.memoryStorage();
 const upload = multer({
@@ -70,6 +71,25 @@ exports.applyForJob = async (req, res) => {
         }
     });
 };
+
+
+// Retrieve all job applications
+exports.allApplication = async (req, res) => {
+    try {
+        const jobApplications = await JobApplication.find();
+        res.status(200).json({
+            success: true,
+            data: jobApplications
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            error: error.message
+        });
+    }
+};
+
+
 
 
 exports.getCV = async (req, res) => {

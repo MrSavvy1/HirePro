@@ -41,6 +41,7 @@ const Signup = ({ role }) => {
 	};
 
 	return (
+		<div className="signup">
 		<div className="signup-container">
 			<h2>Signup as {role}</h2>
 			<form onSubmit={handleSubmit}>
@@ -80,6 +81,8 @@ const Signup = ({ role }) => {
 			</form>
 			{error && <p className="error">{error}</p>}
 		</div>
+		</div>
+		
 	);
 };
 

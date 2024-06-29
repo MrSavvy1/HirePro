@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Profile.css';
+import pro from '../assets/list.png';
 
 const Profile = () => {
 		const [user, setUser] = useState(null);
@@ -42,6 +43,8 @@ const Profile = () => {
 		}
 
 		return (
+			<div className="profile">
+				<img src={pro} alt="Profile Picture" className="profile-picture" />
 				<div className="profile-container">
 						<h2>Profile</h2>
 						{error && <p style={{ color: 'red' }}>{error}</p>}
@@ -54,6 +57,7 @@ const Profile = () => {
 								</div>
 						)}
 				</div>
+			</div>
 		);
 };
 

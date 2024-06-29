@@ -1,19 +1,29 @@
+.company-jobs{
+	align-items: center;
+	justify-content: center;
+	padding: 40px 60px;
+}
+
+.company-jobs-container h2{
+	text-align: center;
+}
+
 .company-header {
-	background-color: green; /* Blue background color */
-	color: #ffffff; /* Text color */
-	padding: 10px 20px; /* Padding inside header */
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Shadow for header */
-	display: flex; /* Use flexbox for layout */
-	justify-content: space-between; /* Space items evenly */
-	align-items: center; /* Center items vertically */
+	background-color: green; 
+	color: #ffffff; 
+	padding: 10px 20px; 
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+	display: flex; 
+	justify-content: space-between; 
+	align-items: center; 
 }
 
 .logo {
-	flex: 1; /* Grow to take available space */
+	flex: 1;space 
 }
 
 .logo h2 {
-	margin: 0; /* Remove default margin */
+	margin: 0; 
 }
 
 nav {
@@ -44,4 +54,26 @@ nav ul li a {
 
 nav ul li a:hover {
 	color: #28a745; /* Hover color (green) */
+}
+
+
+@media (max-width: 768px) {
+	.company-jobs {
+			padding: 30px;
+		justifiy-content: center;
+		margine: 0 auto;
+		aign-items: center;
+	}
+}
+
+@media (max-width: 480px) {
+	.company-jobs {
+		padding-top: 0px;
+		padding-bottom: 20px;
+		padding-left: 10px;
+		padding-right: 10px;
+		justifiy-content: center;
+		margine: 0 auto;
+		aign-items: center;
+	}
 }

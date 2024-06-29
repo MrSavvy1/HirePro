@@ -32,3 +32,15 @@
 .profile-container button:hover {
 	background-color: #0056b3;
 }
+.profile{
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	align-items: center;
+	justify-content: center;
+
+}
+
+.profile img{
+	max-width: 100%;
+	margin: 0 auto;
+}
