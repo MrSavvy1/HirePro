@@ -13,13 +13,13 @@ const CompanyJobs = () => {
 				const fetchUserData = async () => {
 						try {
 								console.log('Fetching user data...');
-								const userResponse = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/mydata');
+								const userResponse = await axios.get('https://hirepro-s561.onrender.com/api/mydata');
 								console.log('User Data:', userResponse.data);
 								const userId = userResponse.data.data._id;
 								setUserId(userId);
 
 								console.log('Fetching job applications...');
-								const applicationsResponse = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobapplications');
+								const applicationsResponse = await axios.get('https://hirepro-s561.onrender.com/api/jobapplications');
 								console.log('Applications Data:', applicationsResponse.data);
 
 								const userApplications = applicationsResponse.data.data.filter(application => application.employerId === userId);
@@ -28,7 +28,7 @@ const CompanyJobs = () => {
 
 								// Fetch CVs for each job application
 								const cvPromises = userApplications.map(application =>
-										axios.get(`https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/getcv/${application._id}`)
+										axios.get(`https://hirepro-s561.onrender.com/api/getcv/${application._id}`)
 								);
 								const cvResponses = await Promise.all(cvPromises);
 								const cvData = cvResponses.reduce((acc, cvResponse, index) => {
@@ -61,7 +61,7 @@ const CompanyJobs = () => {
 												<p>Applicant ID: {application.userId}</p>
 												<p>Cover Letter: {application.cover}</p>
 												{cvs[application._id] ? (
-														<a href={`https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/getcv/${application._id}`} download>
+														<a href={`https://hirepro-s561.onrender.com/api/getcv/${application._id}`} download>
 																Download CV
 														</a>
 												) : (

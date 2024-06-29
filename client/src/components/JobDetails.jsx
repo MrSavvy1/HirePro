@@ -14,7 +14,7 @@ const JobDetails = () => {
 		useEffect(() => {
 				const fetchJob = async () => {
 						try {
-								const response = await axios.get(`https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/job/${id}`);
+								const response = await axios.get(`https://hirepro-s561.onrender.com/api/job/${id}`);
 								if (response.data.success) {
 										setJob(response.data.data);
 								} else {
@@ -42,12 +42,12 @@ const JobDetails = () => {
 				e.preventDefault();
 				const formData = new FormData();
 				formData.append('jobId', id);
-				formData.append('employerId', job.userId); // Assuming job.user._id is the employer/company ID
+				formData.append('employerId', job.userId);
 				formData.append('cover', cover);
 				formData.append('cv', cv);
 
 				try {
-						await axios.post(`https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/uploadapplyjob`, formData, {
+						await axios.post(`https://hirepro-s561.onrender.com/api/uploadapplyjob`, formData, {
 								headers: {
 										'Content-Type': 'multipart/form-data',
 								},

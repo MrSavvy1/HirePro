@@ -15,24 +15,22 @@ const Login = ({ onLogin }) => {
 		const handleSubmit = async (e) => {
 				e.preventDefault();
 				try {
-						const response = await axios.post('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/signin', formData);
+						const response = await axios.post('https://hirepro-s561.onrender.com/api/signin', formData);
 
 					console.log('Login successful, Role from formdata: ', formData.role);
 						const userRole = formData.role;
 					console.log('Login successful, userRole:', userRole);
 
-					// Assuming the response contains the user's role
-
-						// Call onLogin to update the app's state
+					
 						onLogin(userRole);
 
-						// Navigate based on the role
+						
 					console.log('Login successful, userRole after update:', userRole);
 
 						if (userRole === 'regular') {
-								navigate('/joblisting'); // Navigate to Jobs if role is regular
+								navigate('/joblisting'); 
 						} else if (userRole === 'company') {
-								navigate('/post-job'); // Navigate to PostJob if role is company
+								navigate('/post-job'); 
 						}
 				} catch (error) {
 						setError('Invalid email or password');
