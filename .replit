@@ -1,21 +1,10 @@
-entrypoint = "index.js"
-modules = ["nodejs-16"]
-hidden = [".config", "package-lock.json"]
-
-[gitHubImport]
-requiredFiles = [".replit", "replit.nix", "package.json", "package-lock.json"]
-
-[nix]
-channel = "stable-23_05"
-
-[unitTest]
-language = "nodejs"
-
-[deployment]
-run = ["node", "index.js"]
-deploymentTarget = "cloudrun"
-ignorePorts = false
+modules = ["nodejs-20"]
 
 [[ports]]
-localPort = 3000
-externalPort = 80
+localPort = 5173
+externalPort = 5173
+exposeLocalhost = true
+
+[[ports]]
+localPort = 8000
+externalPort = 8000

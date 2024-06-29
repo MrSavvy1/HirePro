@@ -1,0 +1,79 @@
+.company-jobs{
+	align-items: center;
+	justify-content: center;
+	padding: 40px 60px;
+}
+
+.company-jobs-container h2{
+	text-align: center;
+}
+
+.company-header {
+	background-color: green; 
+	color: #ffffff; 
+	padding: 10px 20px; 
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+	display: flex; 
+	justify-content: space-between; 
+	align-items: center; 
+}
+
+.logo {
+	flex: 1;space 
+}
+
+.logo h2 {
+	margin: 0; 
+}
+
+nav {
+	flex: 2; /* Grow nav section to take more space */
+}
+
+nav ul {
+	list-style-type: none; /* Remove default list styling */
+	display: flex; /* Use flexbox for layout */
+	justify-content: flex-end; /* Align items to the end of the flex container */
+	padding: 0; /* Remove padding for ul */
+}
+
+nav ul li {
+	margin-left: 20px; /* Margin between list items */
+}
+
+nav ul li:first-child {
+	margin-left: 0; /* No margin for the first list item */
+}
+
+nav ul li a {
+	text-decoration: none; /* Remove underline from links */
+	color: #ffffff; /* Text color */
+	font-weight: bold; /* Bold font weight */
+	transition: color 0.3s ease; /* Smooth color transition */
+}
+
+nav ul li a:hover {
+	color: #28a745; /* Hover color (green) */
+}
+
+
+@media (max-width: 768px) {
+	.company-jobs {
+			padding: 30px;
+		justifiy-content: center;
+		margine: 0 auto;
+		aign-items: center;
+	}
+}
+
+@media (max-width: 480px) {
+	.company-jobs {
+		padding-top: 0px;
+		padding-bottom: 20px;
+		padding-left: 10px;
+		padding-right: 10px;
+		justifiy-content: center;
+		margine: 0 auto;
+		aign-items: center;
+	}
+}

@@ -1,0 +1,32 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #4CAF50;
+	padding: 10px 20px;
+	color: white;
+}
+
+.logo {
+	font-size: 24px;
+	font-weight: bold;
+	display: flex;
+	
+}
+
+.logo-img {
+		max-width: 60px; /* Adjust max-width according to your design */
+		height: auto;
+}
+.nav-buttons button {
+	background-color: #fff;
+	color: #4CAF50;
+	border: none;
+	padding: 10px 20px;
+	cursor: pointer;
+	margin-left: 10px;
+}
+
+.nav-buttons button:hover {
+	background-color: #ddd;
+}

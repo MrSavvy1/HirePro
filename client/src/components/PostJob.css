@@ -1,0 +1,95 @@
+body, html {
+	margin: 0;
+	padding-top: 30px;
+	height: 100%;
+	width: 100%;
+	font-family: Arial, sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.post-job{
+	justify-content: center;
+	align-items: center;
+}
+
+.post-job-container {
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	max-width: 500px;
+	padding: 20px;
+	background-color: #f9f9f9;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	margin: 0 auto;
+}
+
+.post-job-container h2 {
+	text-align: center;
+	margin-bottom: 20px;
+	align-items: center;
+	justifiy-content: center;
+}
+
+.post-job-container form {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.post-job-container label {
+	margin-top: 10px;
+	margin-bottom: 5px;
+}
+
+.post-job-container input,
+.post-job-container textarea,
+.post-job-container select {
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	width: 100%;
+	box-sizing: border-box;
+}
+
+.post-job-container button {
+	margin-top: 20px;
+	padding: 10px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+}
+
+.post-job-container button:hover {
+	background-color: #45a049;
+}
+
+
+@media (max-width: 768px) {
+	.post-job {
+			padding: 30px;
+		justifiy-content: center;
+		margine: 0 auto;
+		aign-items: center;
+	}
+}
+
+@media (max-width: 480px) {
+	.post-job {
+		padding-top: 0px;
+		padding-bottom: 20px;
+		padding-left: 10px;
+		padding-right: 10px;
+		justifiy-content: center;
+		margin: 0 auto;
+		aign-items: center;
+	}
+}
