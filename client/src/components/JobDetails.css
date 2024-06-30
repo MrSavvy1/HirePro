@@ -68,7 +68,7 @@ body, html {
 	background-color: #45a049;
 }
 
-/* Responsive design */
+
 @media (max-width: 768px) {
 	.job-details-container {
 			padding: 15px;

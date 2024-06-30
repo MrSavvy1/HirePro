@@ -21,7 +21,7 @@ body, html {
   padding: 20px;
   background-color: #4CAF50;
   display: flex;
-  justify-content: space-between;
+  /*justify-content: space-between;*/
   align-items: center;
   color: white;
   box-sizing: border-box;
@@ -52,7 +52,11 @@ body, html {
   justify-content: center;
   /*align-items: center;*/
   text-align: center;
+  overflow: hidden;
+  
 }
+
+
 
 .form-container {
 display: flex;
@@ -95,7 +99,7 @@ h1 {
 
 .login{
   padding-top: 80px;
-  background-image: url('../assets/back.png');
+  background-image: url('./assets/back.png');
   background-size: cover;
   background-repeat: no-repeat;
   height: 100%;

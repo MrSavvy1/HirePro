@@ -15,7 +15,7 @@
 }
 
 .logo-img {
-		max-width: 60px; /* Adjust max-width according to your design */
+		max-width: 60px; 
 		height: auto;
 }
 .nav-buttons button {
@@ -29,4 +29,21 @@
 
 .nav-buttons button:hover {
 	background-color: #ddd;
+}
+
+@media (max-width: 768px) {
+	.nav-buttons button {
+		padding: 8px 12px;
+		cursor: pointer;
+		margin-left: 10px;
+	}
+	
+}
+
+@media (max-width: 480px) {
+	.nav-buttons button {
+		padding: 5px 9px;
+		cursor: pointer;
+		margin-left: 8px;
+	}
 }
