@@ -13,7 +13,7 @@ const Profile = () => {
 		useEffect(() => {
 				const fetchUserDetails = async () => {
 						try {
-								const response = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/mydata');
+								const response = await axios.get('https://hirepro-s561.onrender.com/api/mydata');
 								setUser(response.data.data);
 						} catch (error) {
 								setError('Error fetching user details. Please try again later.');
@@ -28,10 +28,10 @@ const Profile = () => {
 
 		const handleLogout = async () => {
 				try {
-						await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/logout'); // Adjust logout API endpoint as per your backend
+						await axios.get('https://hirepro-s561.onrender.com/api/logout'); 
 						localStorage.removeItem('token');
 						localStorage.removeItem('userId');
-						navigate('/'); // Navigate to home or login page after logout
+						navigate('/');
 				} catch (error) {
 						setError('Error logging out. Please try again.');
 						console.error('Error logging out:', error);

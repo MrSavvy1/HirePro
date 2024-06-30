@@ -26,7 +26,7 @@ const CompanyJobs = () => {
 								console.log('User Applications:', userApplications);
 								setJobs(userApplications);
 
-								// Fetch CVs for each job application
+								
 								const cvPromises = userApplications.map(application =>
 										axios.get(`https://hirepro-s561.onrender.com/api/getcv/${application._id}`)
 								);
