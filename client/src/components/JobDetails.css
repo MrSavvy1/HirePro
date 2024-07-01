@@ -7,6 +7,7 @@ body, html {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	object-fit: contain;
 }
 
 .job-details-container {
@@ -14,13 +15,15 @@ body, html {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 100%;
+	/*width: 100%;*/
 	max-width: 600px;
 	padding: 20px;
 	background-color: #f9f9f9;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
 	margin: 20px;
+	object-fit: contain;
+
 }
 
 .job-details-container h2 {

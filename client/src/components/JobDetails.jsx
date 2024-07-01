@@ -53,6 +53,9 @@ const JobDetails = () => {
 								},
 						});
 						alert('Application submitted successfully');
+
+					setCover('');
+					setCv(null);
 				} catch (error) {
 						console.error('Error submitting application:', error);
 				}
