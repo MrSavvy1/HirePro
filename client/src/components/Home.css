@@ -1,20 +1,22 @@
 .home-img {
 	width: 100%;
-	height: 100%;
-	margin: 0px;
-	flex-grow: 1;
+		height: 100vh;
+		object-fit: cover; 
+		object-position: center; 
+		position: absolute; 
+		top: 0;
+		left: 0;
 	
 	
 	
 }
 
 .content{
-	padding: 0px;
-	/*justify-content: center;*/
-	display: flex;
 	width: 100%;
-	height: 100%; 
-	/*background-image: url("../assets/back.png")*/
+	height: 100%;
+	position: relative; 
+	overflow: hidden;
+	
 }
 
 @media (max-width: 768px){
