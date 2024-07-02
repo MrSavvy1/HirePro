@@ -71,6 +71,7 @@ const JobDetails = () => {
 
 		return (
 				<div className="job-details-container">
+					
 						<h2>Job Details</h2>
 						{job && (
 								<>

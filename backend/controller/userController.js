@@ -69,3 +69,34 @@ exports.deleteUser = async (req, res, next) => {
         return next(error);
     }
 }
+
+
+// Update user profile
+exports.updateProfile = async (req, res, next) => {
+    try {
+        const { id } = req.user; // assuming the user id is stored in req.user
+        const updateData = req.body;
+
+        if (updateData.password) {
+            const salt = await bcrypt.genSalt(10);
+            updateData.password = await bcrypt.hash(updateData.password, salt);
+        }
+
+        const updatedUser = await User.findByIdAndUpdate(id, updateData, { new: true }).select('-password');
+
+        if (!updatedUser) {
+            res.status(404).json({
+                error: "User not found"
+            });
+            return;
+        }
+
+        res.status(200).json({
+            success: true,
+            data: updatedUser
+        });
+    } catch (error) {
+        console.error("Error updating user profile: ", error);
+        next(error);
+    }
+};

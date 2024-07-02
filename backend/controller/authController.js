@@ -40,6 +40,14 @@ exports.signin = async (req, res, next) => {
             return;
         }
 
+        if (user.role !== role) {
+            res.status(403).json({
+                error: "Incorrect role"
+            });
+            return;
+        }
+
+
         // Check user is valid
         const user = await User.findOne({ email });
         if (!user) {

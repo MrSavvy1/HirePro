@@ -34,7 +34,7 @@ const Signup = ({ role }) => {
 				navigate('/login');
 			} catch (err) {
 				console.error('Signup error:', err);
-				setError('An error occurred during signup');
+				setError('Email already exist');
 			
 		};
 
