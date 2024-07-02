@@ -50,7 +50,7 @@ app.use("/api", jobApplicationRoute);
 
 
 //port
-port = process.env.PORT || 8000;
+port = process.env.PORT || 5000;
 
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);

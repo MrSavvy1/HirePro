@@ -14,7 +14,7 @@ const Profile = () => {
 		useEffect(() => {
 				const fetchUserDetails = async () => {
 						try {
-								const response = await axios.get('https://hirepro-s561.onrender.com/api/mydata');
+								const response = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:5000/api/mydata');
 								setUser(response.data.data);
 						} catch (error) {
 								setError('Error fetching user details. Please try again later.');
@@ -45,7 +45,7 @@ const Profile = () => {
 
 		const handleSave = async () => {
 				try {
-						await axios.put('https://hirepro-s561.onrender.com/api/mydata', user);
+						await axios.put('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:5000/api/mydata', user);
 						setIsEditing(false);
 				} catch (error) {
 						setError('Error saving profile. Please try again later.');

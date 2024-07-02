@@ -24,7 +24,7 @@ exports.signup = async (req, res, next) => {
 
 exports.signin = async (req, res, next) => {
     try {
-        const { email, password } = req.body;
+        const { email, password, role } = req.body;
 
         // Validation
         if (!email) {
@@ -40,19 +40,19 @@ exports.signin = async (req, res, next) => {
             return;
         }
 
-        if (user.role !== role) {
-            res.status(403).json({
-                error: "Incorrect role"
-            });
-            return;
-        }
-
-
         // Check user is valid
         const user = await User.findOne({ email });
         if (!user) {
             res.status(403).json({
                 error: "Invalid Email, Please signup if you are a new user"
+            });
+            return;
+        }
+
+        // Check role
+        if (user.role !== role) {
+            res.status(403).json({
+                error: "Incorrect role"
             });
             return;
         }
@@ -65,6 +65,7 @@ exports.signin = async (req, res, next) => {
             });
             return;
         }
+
 
         // Send token
         sendTokenResponse(user, 200, res);

@@ -32,7 +32,7 @@ const Login = ({ onLogin }) => {
 
 						if (userRole === 'Regular') {
 								navigate('/joblisting'); 
-						} else if (userRole === 'company') {
+						} else if (userRole === 'Company') {
 								navigate('/post-job'); 
 						}
 				} catch (error) {
@@ -64,8 +64,8 @@ const Login = ({ onLogin }) => {
 										required
 								/>
 								<select name="role" value={formData.role} onChange={handleChange}>
-										<option value="regular">Employee</option>
-										<option value="company">Company</option>
+										<option value="Regular">Employee</option>
+										<option value="Company">Company</option>
 								</select>
 								<button type="submit">Login</button>
 						</form>
