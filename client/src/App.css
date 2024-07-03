@@ -81,7 +81,7 @@ h1 {
 }
 
 .App {
-  height: 100%;
+  height: auto;
 }
 
 .login{
@@ -96,10 +96,11 @@ h1 {
 @media (max-width: 768px){
     .content{
     padding: 0px;
-    justify-content: center;
     display: flex;
     width: 100%;
     height: 100%; 
-    flex-direction: row;
+    flex-direction: column;
   }
+
+  
 }

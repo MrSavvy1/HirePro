@@ -10,7 +10,7 @@ const PostJob = () => {
 				description: '',
 				location: '',
 				available: true, 
-				salary: '',
+				salary: '$',
 				datePosted: '',
 				applicationDeadline: '',
 				jobCategory: ''
@@ -21,7 +21,7 @@ const PostJob = () => {
 				
 				const fetchJobCategories = async () => {
 						try {
-								const response = await axios.get('https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5000/api/jobCat/all');
+								const response = await axios.get('https://hirepro-s561.onrender.com/api/jobCat/all');
 								setExistingJobCategories(response.data.allCat);
 						} catch (error) {
 								console.error('Error fetching job categories:', error);
@@ -50,18 +50,18 @@ const PostJob = () => {
 						
 						if (!categoryId) {
 							
-								const response = await axios.post('https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5000/api/jobCat/create', { jobTypeName: selectedCategory });
+								const response = await axios.post('https://hirepro-s561.onrender.com/api/jobCat/create', { jobTypeName: selectedCategory });
 								categoryId = response.data._id;
 								alert(`Job category '${selectedCategory}' created successfully`);
 
 								
-								const allCategoriesResponse = await axios.get('https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5000/api/jobCat/all');
+								const allCategoriesResponse = await axios.get('https://hirepro-s561.onrender.com/api/jobCat/all');
 								setExistingJobCategories(allCategoriesResponse.data.allCat);
 						}
 
 
 						const jobData = { ...jobDetails, jobCategory: categoryId };
-						await axios.post('https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5000/api/jobs', jobData);
+						await axios.post('https://hirepro-s561.onrender.com/api/jobs', jobData);
 						alert('Job posted successfully');
 
 					setJobDetails({
@@ -69,7 +69,7 @@ const PostJob = () => {
 							description: '',
 							location: '',
 							available: true,
-							salary: '',
+							salary: '$',
 							datePosted: '',
 							applicationDeadline: '',
 							jobCategory: ''

@@ -13,7 +13,7 @@ const CreateJobCategory = () => {
 				const jobCategoryData = { jobTypeName };
 
 				try {
-						await axios.post('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:8000/api/jobCat/create', jobCategoryData, { withCredentials: true });
+						await axios.post('https://hirepro-s561.onrender.com/api/jobCat/create', jobCategoryData, { withCredentials: true });
 						alert('Job category created successfully');
 						navigate('/post-job');
 				} catch (error) {

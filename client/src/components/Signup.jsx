@@ -30,7 +30,7 @@ const Signup = ({ role }) => {
 			try {
 				console.log(`Role: ${role}`);
 				console.log('FormData:', formData);
-				await axios.post(`https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:5000/api/signup`, formData);
+				await axios.post(`https://hirepro-s561.onrender.com/api/signup`, formData);
 				navigate('/login');
 			} catch (err) {
 				console.error('Signup error:', err);

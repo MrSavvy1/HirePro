@@ -9,6 +9,7 @@ import Login from './components/Login';
 import JobListing from './components/JobListing';
 import JobDetails from './components/JobDetails';
 import JobPost from './components/PostJob';
+import Header2 from './components/Header';
 import Footer from './components/Footer';
 import Header from './components/Header2';
 import Profile from './components/Profile';
@@ -43,7 +44,7 @@ function App() {
                 {isAuthenticated && role === 'regular'}
                 {isAuthenticated && role === 'company'}
                 <Routes>
-                    <Route path="/" element={<Home />} />
+                    <Route path="/" element={<> <Header2 /> <Home /> <Footer /> </>} />
                     <Route path="/whoareyou" element={<> <Header /> <WhoAreYou setRole={setRole} /> <Footer /> </>} />
                     <Route path="/signup" element={<> <Header /><Signup role={role} /> <Footer /> </>} />
                     <Route path="/login" element={<> <Header /> <Login onLogin={handleLogin} /> <Footer /> </>} />

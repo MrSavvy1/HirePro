@@ -14,7 +14,7 @@ const JobListing = () => {
 		useEffect(() => {
 				const fetchJobs = async () => {
 						try {
-								const response = await axios.get('https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5000/api/alljobs');
+								const response = await axios.get('https://hirepro-s561.onrender.com/api/alljobs');
 								if (response.data.success && Array.isArray(response.data.data)) {
 										setJobs(response.data.data);
 								} else {
