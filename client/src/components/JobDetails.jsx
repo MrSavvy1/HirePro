@@ -53,6 +53,9 @@ const JobDetails = () => {
 								},
 						});
 						alert('Application submitted successfully');
+
+					setCover('');
+					setCv(null);
 				} catch (error) {
 						console.error('Error submitting application:', error);
 				}
@@ -68,26 +71,47 @@ const JobDetails = () => {
 
 		return (
 				<div className="job-details-container">
+					
 						<h2>Job Details</h2>
+					<div className="jobsD">
 						{job && (
 								<>
+									<div>
 										<p><strong>Title:</strong> {job.title}</p>
+										</div>
+									<div>
 										<p><strong>Description:</strong> {job.description}</p>
+										</div>
+									<div>
 										<p><strong>Location:</strong> {job.location}</p>
+										</div>
+									<div>
 										<p><strong>Salary:</strong> {job.salary}</p>
+										</div>
+									<div>
 										<p><strong>Date Posted:</strong> {job.datePosted}</p>
+										</div>
+									<div>
 										<p><strong>Application Deadline:</strong> {job.applicationDeadline}</p>
+										</div>
 								</>
 						)}
 						<form onSubmit={handleSubmit}>
+							<div>
 								<label>Cover Letter:</label>
 								<textarea name="cover" value={cover} onChange={handleCoverChange} required></textarea>
+								</div>
+
+							<div>
 
 								<label>Upload CV (PDF only):</label>
 								<input type="file" name="cv" accept=".pdf" onChange={handleCvChange} required />
+								</div>
+						
 
 								<button type="submit">Submit Application</button>
 						</form>
+						</div>
 				</div>
 		);
 };

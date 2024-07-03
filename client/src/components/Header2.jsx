@@ -16,10 +16,7 @@ const Header = () => {
 										<h2>HirePro</h2>
 								</Link>
 						</div>
-						<div className="navigation">
-								<button onClick={() => navigate('/whoAreYou')}>Sign Up</button>
-								<button onClick={() => navigate('/login')}>Login</button>
-						</div>
+						
 				</header>
 		);
 };

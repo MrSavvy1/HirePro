@@ -24,7 +24,7 @@ exports.signup = async (req, res, next) => {
 
 exports.signin = async (req, res, next) => {
     try {
-        const { email, password } = req.body;
+        const { email, password, role } = req.body;
 
         // Validation
         if (!email) {
@@ -49,6 +49,14 @@ exports.signin = async (req, res, next) => {
             return;
         }
 
+        // Check role
+        if (user.role !== role) {
+            res.status(403).json({
+                error: "Incorrect role"
+            });
+            return;
+        }
+
         // Check password
         const checkPwd = await user.comparePassword(password);
         if (!checkPwd) {
@@ -57,6 +65,7 @@ exports.signin = async (req, res, next) => {
             });
             return;
         }
+
 
         // Send token
         sendTokenResponse(user, 200, res);

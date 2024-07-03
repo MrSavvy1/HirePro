@@ -1,7 +1,10 @@
 .company-jobs{
 	align-items: center;
 	justify-content: center;
-	padding: 40px 60px;
+	padding: 10px 15px;
+	height: 100%;
+	display: grid;
+	grid-template-columns: 1fr, 1fr, 1fr;
 }
 
 .company-jobs-container h2{
@@ -19,7 +22,8 @@
 }
 
 .logo {
-	flex: 1;space 
+	flex: 1; 
+	/*ustify-content: space-between;*/
 }
 
 .logo h2 {
@@ -27,53 +31,55 @@
 }
 
 nav {
-	flex: 2; /* Grow nav section to take more space */
+	flex: 2; 
 }
 
 nav ul {
-	list-style-type: none; /* Remove default list styling */
-	display: flex; /* Use flexbox for layout */
-	justify-content: flex-end; /* Align items to the end of the flex container */
-	padding: 0; /* Remove padding for ul */
+	list-style-type: none; 
+	display: flex;
+	justify-content: flex-end; 
+	padding: 0; 
 }
 
 nav ul li {
-	margin-left: 20px; /* Margin between list items */
+	margin-left: 20px;
 }
 
 nav ul li:first-child {
-	margin-left: 0; /* No margin for the first list item */
+	margin-left: 0; 
 }
 
 nav ul li a {
-	text-decoration: none; /* Remove underline from links */
-	color: #ffffff; /* Text color */
-	font-weight: bold; /* Bold font weight */
-	transition: color 0.3s ease; /* Smooth color transition */
+	text-decoration: none; 
+	color: #ffffff; 
+	font-weight: bold; 
+	transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
-	color: #28a745; /* Hover color (green) */
+	color: #28a745;
 }
 
 
 @media (max-width: 768px) {
 	.company-jobs {
-			padding: 30px;
+		padding: 30px;
 		justifiy-content: center;
-		margine: 0 auto;
-		aign-items: center;
+		margin: 0 auto;
+		align-items: center;
 	}
 }
 
 @media (max-width: 480px) {
 	.company-jobs {
+		display: flex;
+		flex-direction: column;
 		padding-top: 0px;
 		padding-bottom: 20px;
 		padding-left: 10px;
 		padding-right: 10px;
 		justifiy-content: center;
-		margine: 0 auto;
-		aign-items: center;
+		margin: 0 auto;
+		align-items: center;
 	}
 }

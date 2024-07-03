@@ -17,7 +17,7 @@
 }
 
 .logo-img {
-		max-width: 60px; design */
+		max-width: 60px; 
 		height: auto;
 }
 .logo h2 {
@@ -26,8 +26,8 @@
 
 .nav-links {
 	list-style-type: none; 
-	display: flex; /* Use flexbox for layout */
-	justify-content: flex-end; /* Align items to the end of the flex container */
+	display: flex; 
+	justify-content: flex-end; 				
 	padding: 0; 
 }
 
@@ -79,4 +79,5 @@
 
 	.logo-img{
 		width: 30px;
+	}
 }

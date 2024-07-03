@@ -1,10 +1,14 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
+
+
 import './Signup.css';
 
 const Login = ({ onLogin }) => {
-		const [formData, setFormData] = useState({ email: '', password: '', role: 'regular' });
+		const [formData, setFormData] = useState({ email: '', password: '', role: 'Regular' });
 		const [error, setError] = useState('');
 		const navigate = useNavigate();
 
@@ -27,9 +31,9 @@ const Login = ({ onLogin }) => {
 						
 					console.log('Login successful, userRole after update:', userRole);
 
-						if (userRole === 'regular') {
+						if (userRole === 'Regular') {
 								navigate('/joblisting'); 
-						} else if (userRole === 'company') {
+						} else if (userRole === 'Company') {
 								navigate('/post-job'); 
 						}
 				} catch (error) {
@@ -38,8 +42,9 @@ const Login = ({ onLogin }) => {
 		};
 
 		return (
+			
 			<div className="signup">
-				<div className="login-container">
+				<div className="signup-container">
 						<form onSubmit={handleSubmit} className="form-container">
 								<h2>Login</h2>
 								{error && <p className="error">{error}</p>}
@@ -60,8 +65,8 @@ const Login = ({ onLogin }) => {
 										required
 								/>
 								<select name="role" value={formData.role} onChange={handleChange}>
-										<option value="regular">Employee</option>
-										<option value="company">Company</option>
+										<option value="Regular">Employee</option>
+										<option value="Company">Company</option>
 								</select>
 								<button type="submit">Login</button>
 						</form>

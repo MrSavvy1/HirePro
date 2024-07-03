@@ -9,7 +9,9 @@ import Login from './components/Login';
 import JobListing from './components/JobListing';
 import JobDetails from './components/JobDetails';
 import JobPost from './components/PostJob';
+import Header2 from './components/Header';
 import Footer from './components/Footer';
+import Header from './components/Header2';
 import Profile from './components/Profile';
 import ProfileCom from './components/ProfileCom';
 //import AppliedJobs from './components/AppliedJobs';
@@ -42,10 +44,10 @@ function App() {
                 {isAuthenticated && role === 'regular'}
                 {isAuthenticated && role === 'company'}
                 <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/whoareyou" element={<WhoAreYou setRole={setRole} />} />
-                    <Route path="/signup" element={<Signup role={role} />} />
-                    <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                    <Route path="/" element={<> <Header2 /> <Home /> <Footer /> </>} />
+                    <Route path="/whoareyou" element={<> <Header /> <WhoAreYou setRole={setRole} /> <Footer /> </>} />
+                    <Route path="/signup" element={<> <Header /><Signup role={role} /> <Footer /> </>} />
+                    <Route path="/login" element={<> <Header /> <Login onLogin={handleLogin} /> <Footer /> </>} />
                     {/* Regular User Routes */}
                     <Route path="/joblisting" element={<PrivateRoute element={<> <EmployeeHeader /> <JobListing /> <Footer /> </>} roles={['regular']} />} />
                     <Route path="/job/:id" element={<PrivateRoute element={<> <EmployeeHeader /> <JobDetails /> <Footer /> </>} roles={['regular']} />} />

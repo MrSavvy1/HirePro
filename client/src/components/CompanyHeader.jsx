@@ -13,8 +13,8 @@ const CompanyHeader = () => (
 
 				<nav>
 						<ul className="nav-links">
-								<li><Link to="/post-job">Post Job</Link></li>
-								<li><Link to="/company-jobs">Company Jobs</Link></li>
+								<li><Link to="/post-job">Post-Job</Link></li>
+								<li><Link to="/company-jobs">Applied-Jobs</Link></li>
 								<li><Link to="/profilecom">Profile</Link></li>
 						</ul>
 				</nav>
