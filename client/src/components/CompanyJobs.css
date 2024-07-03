@@ -1,8 +1,8 @@
 .company-jobs{
 	align-items: center;
 	justify-content: center;
-	padding: 40px 60px;
-	height: 100vh;
+	padding: 10px 15px;
+	height: 100%;
 	display: grid;
 	grid-template-columns: 1fr, 1fr, 1fr;
 }
@@ -63,7 +63,7 @@ nav ul li a:hover {
 
 @media (max-width: 768px) {
 	.company-jobs {
-			padding: 30px;
+		padding: 30px;
 		justifiy-content: center;
 		margin: 0 auto;
 		align-items: center;
@@ -72,12 +72,14 @@ nav ul li a:hover {
 
 @media (max-width: 480px) {
 	.company-jobs {
+		display: flex;
+		flex-direction: column;
 		padding-top: 0px;
 		padding-bottom: 20px;
 		padding-left: 10px;
 		padding-right: 10px;
 		justifiy-content: center;
-		margine: 0 auto;
+		margin: 0 auto;
 		align-items: center;
 	}
 }

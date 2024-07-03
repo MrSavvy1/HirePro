@@ -1,5 +1,6 @@
 const User = require('../models/userModel');
 const ErrorResponse = require('../utils/errorResponse');
+const bcrypt = require('bcryptjs');
 
 
 //load all users
@@ -71,10 +72,9 @@ exports.deleteUser = async (req, res, next) => {
 }
 
 
-// Update user profile
 exports.updateProfile = async (req, res, next) => {
     try {
-        const { id } = req.user; // assuming the user id is stored in req.user
+        const { id } = req.user; // Assuming req.user is set by isAuthenticated middleware
         const updateData = req.body;
 
         if (updateData.password) {

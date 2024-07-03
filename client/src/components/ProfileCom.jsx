@@ -29,7 +29,7 @@ const Profile = () => {
 
 		const handleLogout = async () => {
 				try {
-						await axios.get('https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5173//api/logout'); 
+						await axios.get('https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5173/api/logout'); 
 						localStorage.removeItem('token');
 						localStorage.removeItem('userId');
 						navigate('/'); 
@@ -45,7 +45,7 @@ const Profile = () => {
 
 		const handleSave = async () => {
 				try {
-						await axios.put('https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5000/api/mydata', user);
+						await axios.put(`https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5000/api/user/updateprofile`, user);
 						setIsEditing(false);
 				} catch (error) {
 						setError('Error saving profile. Please try again later.');

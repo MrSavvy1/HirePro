@@ -17,9 +17,19 @@
 	height: 100%;
 /*	position: relative; 
 	overflow: hidden;
-	
+	*/
 }
-*/
+
+
+.div1{
+	background-color: #4CAF50;
+	color: white;
+	text-align:left;
+	align-items: center;
+	align-content: center;
+	justify-items: center;
+	justify-content: center;
+}
 @media (max-width: 768px){
 	{
 		.home-img {
