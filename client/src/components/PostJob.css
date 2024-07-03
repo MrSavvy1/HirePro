@@ -20,26 +20,28 @@
 }
 
 .post-job-container form {
-	display: flex;
-	flex-direction: column;
+	display: flow-root;
+	width: 100%;
+	gap: 16px;
 }
 
-.post-job-container label {
-	margin-bottom: 5px;
-	width: 100vw;
+.post-job-container textarea{
+	width: 100%;
+	height: 100px;
 }
 
-.post-job-container input,
-.post-job-container textarea,
-.post-job-container select {
-	padding: 10px;
-	border: 1px solid #ddd;
-	border-radius: 4px;
-	width: auto;
+.post-job-container form > div {
+	display: inline-block;
+	vertical-align: top;
+	width: calc(50% - 8px);
 	box-sizing: border-box;
-	object-fit: cover;
+	margin-bottom: 16px;
 }
 
+.post-job-container form label {
+	display: block; 
+	margin-bottom: 8px;
+}
 .post-job-container button {
 	padding: 10px;
 	background-color: #4caf50;
@@ -48,6 +50,7 @@
 	border-radius: 4px;
 	cursor: pointer;
 	transition: background-color 0.3s;
+	
 }
 
 .post-job-container button:hover {
@@ -55,6 +58,11 @@
 }
 
 @media (max-width: 768px) {
+	.post-job-container form > div {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
 	.post-job {
 		display: flex;
 		flex-direction: column;

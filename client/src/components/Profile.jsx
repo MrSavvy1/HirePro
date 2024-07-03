@@ -14,7 +14,7 @@ const Profile = () => {
 		useEffect(() => {
 				const fetchUserDetails = async () => {
 						try {
-								const response = await axios.get('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:5000/api/mydata');
+								const response = await axios.get('https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5000/api/mydata');
 								setUser(response.data.data);
 						} catch (error) {
 								setError('Error fetching user details. Please try again later.');
@@ -29,10 +29,10 @@ const Profile = () => {
 
 		const handleLogout = async () => {
 				try {
-						await axios.get('https://hirepro-s561.onrender.com/api/logout'); // Adjust logout API endpoint as per your backend
+						await axios.get('https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5173//api/logout'); 
 						localStorage.removeItem('token');
 						localStorage.removeItem('userId');
-						navigate('/'); // Navigate to home or login page after logout
+						navigate('/'); 
 				} catch (error) {
 						setError('Error logging out. Please try again.');
 						console.error('Error logging out:', error);
@@ -45,7 +45,7 @@ const Profile = () => {
 
 		const handleSave = async () => {
 				try {
-						await axios.put('https://97479fd4-f654-42e0-a2b8-c5d5a0aea58a-00-9ns3ge21fmbs.kirk.replit.dev:5000/api/mydata', user);
+						await axios.put('https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5000/api/mydata', user);
 						setIsEditing(false);
 				} catch (error) {
 						setError('Error saving profile. Please try again later.');

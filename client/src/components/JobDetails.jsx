@@ -14,7 +14,7 @@ const JobDetails = () => {
 		useEffect(() => {
 				const fetchJob = async () => {
 						try {
-								const response = await axios.get(`https://hirepro-s561.onrender.com/api/job/${id}`);
+								const response = await axios.get(`https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5000/api/job/${id}`);
 								if (response.data.success) {
 										setJob(response.data.data);
 								} else {
@@ -47,7 +47,7 @@ const JobDetails = () => {
 				formData.append('cv', cv);
 
 				try {
-						await axios.post(`https://hirepro-s561.onrender.com/api/uploadapplyjob`, formData, {
+						await axios.post(`https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5000/api/uploadapplyjob`, formData, {
 								headers: {
 										'Content-Type': 'multipart/form-data',
 								},
@@ -73,25 +73,45 @@ const JobDetails = () => {
 				<div className="job-details-container">
 					
 						<h2>Job Details</h2>
+					<div className="jobsD">
 						{job && (
 								<>
+									<div>
 										<p><strong>Title:</strong> {job.title}</p>
+										</div>
+									<div>
 										<p><strong>Description:</strong> {job.description}</p>
+										</div>
+									<div>
 										<p><strong>Location:</strong> {job.location}</p>
+										</div>
+									<div>
 										<p><strong>Salary:</strong> {job.salary}</p>
+										</div>
+									<div>
 										<p><strong>Date Posted:</strong> {job.datePosted}</p>
+										</div>
+									<div>
 										<p><strong>Application Deadline:</strong> {job.applicationDeadline}</p>
+										</div>
 								</>
 						)}
 						<form onSubmit={handleSubmit}>
+							<div>
 								<label>Cover Letter:</label>
 								<textarea name="cover" value={cover} onChange={handleCoverChange} required></textarea>
+								</div>
+
+							<div>
 
 								<label>Upload CV (PDF only):</label>
 								<input type="file" name="cv" accept=".pdf" onChange={handleCvChange} required />
+								</div>
+						
 
 								<button type="submit">Submit Application</button>
 						</form>
+						</div>
 				</div>
 		);
 };

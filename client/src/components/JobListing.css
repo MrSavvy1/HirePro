@@ -93,6 +93,11 @@ body, html {
 		display: flex;
 		flex-direction: column;
 	}
+
+	.job-listing{
+		display: flex;
+		flex-direction: column;
+	}
 	.view-details-btn {
 			padding: 6px 12px;
 			font-size: 14px;

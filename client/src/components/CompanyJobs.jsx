@@ -13,13 +13,13 @@ const CompanyJobs = () => {
 				const fetchUserData = async () => {
 						try {
 								console.log('Fetching user data...');
-								const userResponse = await axios.get('https://hirepro-s561.onrender.com/api/mydata');
+								const userResponse = await axios.get('https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5000/api/mydata');
 								console.log('User Data:', userResponse.data);
 								const userId = userResponse.data.data._id;
 								setUserId(userId);
 
 								console.log('Fetching job applications...');
-								const applicationsResponse = await axios.get('https://hirepro-s561.onrender.com/api/jobapplications');
+								const applicationsResponse = await axios.get('https://bc31de55-c8d5-4f5a-985d-ea51ad50d9c5-00-g9e9jj3pmgbl.worf.replit.dev:5000/api/jobapplications');
 								console.log('Applications Data:', applicationsResponse.data);
 
 								const userApplications = applicationsResponse.data.data.filter(application => application.employerId === userId);

@@ -1,10 +1,12 @@
 .profile {
-	max-width: 800px;
+	max-width: 1800px;
+	width: 100%;
 	margin: auto;
 	padding: 20px;
 	border: 1px solid #ccc;
 	border-radius: 10px;
 	background-color: #f9f9f9;
+	display: contents;
 }
 
 .profile-picture {
@@ -17,6 +19,7 @@
 
 .profile-container {
 	text-align: left;
+	padding: 10px;
 }
 
 .profile-container h2 {
@@ -24,26 +27,31 @@
 }
 
 .profile-field {
+	display: inline-block;
+	width: calc(50% - 10px); /* Each item takes up roughly 50% of the container's width */
+	box-sizing: border-box; /* Ensure padding and borders are included in the width calculation */
+	vertical-align: top;
 	margin-bottom: 15px;
+	margin-right: 10px;
+	
 }
 
 .profile-field label {
 	display: block;
 	font-weight: bold;
+	margin-bottom: 5px; 
+	
 }
 
-.profile-field p {
-	margin: 0;
-}
-
+.profile-field p,
 .profile-field input,
 .profile-field textarea {
 	width: 100%;
 	padding: 8px;
-	margin-top: 5px;
 	border: 1px solid #ccc;
 	border-radius: 5px;
-	object-fit: cover;
+	margin-top: 5px;
+	box-sizing: border-box;
 }
 
 button {
@@ -60,4 +68,17 @@ button {
 
 button:hover {
 	background-color: #0056b3;
+}
+
+/* Optional: Adjust the layout for smaller screens */
+@media (max-width: 600px) {
+
+	.profile{
+		max-width: fit-content;
+		padding: 10px;
+		width: 100%;
+	}
+	.profile-field {
+			width: 100%; /* Each item takes up 100% of the container's width on smaller screens */
+	}
 }
