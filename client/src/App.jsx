@@ -45,9 +45,9 @@ function App() {
                 {isAuthenticated && role === 'company'}
                 <Routes>
                     <Route path="/" element={<> <Header2 /> <Home /> <Footer /> </>} />
-                    <Route path="/whoareyou" element={<> <Header /> <WhoAreYou setRole={setRole} /> <Footer /> </>} />
-                    <Route path="/signup" element={<> <Header /><Signup role={role} /> <Footer /> </>} />
-                    <Route path="/login" element={<> <Header /> <Login onLogin={handleLogin} /> <Footer /> </>} />
+                    <Route path="/whoareyou" element={<WhoAreYou setRole={setRole} /> } />
+                    <Route path="/signup" element={<Signup role={role} />} />
+                    <Route path="/login" element={ <Login onLogin={handleLogin} /> } />
                     {/* Regular User Routes */}
                     <Route path="/joblisting" element={<PrivateRoute element={<> <EmployeeHeader /> <JobListing /> <Footer /> </>} roles={['regular']} />} />
                     <Route path="/job/:id" element={<PrivateRoute element={<> <EmployeeHeader /> <JobDetails /> <Footer /> </>} roles={['regular']} />} />

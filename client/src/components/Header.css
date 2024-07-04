@@ -15,8 +15,11 @@
 }
 
 .logo-img {
-		max-width: 60px; 
+	max-width: 100px;
 		height: auto;
+		border-radius: 50%;
+		background-color: white;
+		margin-right: 10px;
 }
 .nav-buttons button {
 	background-color: #fff;

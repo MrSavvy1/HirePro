@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
 import './Signup.css';
 
 const Signup = ({ role }) => {
@@ -43,6 +44,13 @@ const Signup = ({ role }) => {
 	return (
 		<div className="signup">
 		<div className="signup-container">
+
+	
+				<Link to="/">
+						<img src={logo} alt="HirePro Logo" className="logo-img" />
+				</Link>
+		
+
 			<h2>Signup as {role}</h2>
 			<form onSubmit={handleSubmit}>
 				<input

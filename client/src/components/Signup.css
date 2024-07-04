@@ -19,6 +19,14 @@
 	
 }
 
+.logo-img {
+	  max-width: 100px;
+		height: auto;
+		border-radius: 50%;
+		background-color: white;
+		margin-right: 10px;
+
+
 form {
 	display: flex;
 	flex-direction: column;

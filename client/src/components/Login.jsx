@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
 import Header from './Header';
 import Footer from './Footer';
 
@@ -45,8 +46,13 @@ const Login = ({ onLogin }) => {
 			
 			<div className="signup">
 				<div className="signup-container">
+
+					<Link to="/">
+							<img src={logo} alt="HirePro Logo" className="logo-img" />
+					</Link>
+
+						<h2>Login</h2>
 						<form onSubmit={handleSubmit} className="form-container">
-								<h2>Login</h2>
 								{error && <p className="error">{error}</p>}
 								<input
 										type="email"

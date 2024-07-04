@@ -1,4 +1,7 @@
-
+/* Apply universal box-sizing */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
 
 body, html {
   margin: 0;
@@ -7,11 +10,10 @@ body, html {
   width: 100%;
   font-family: Helvetica, Arial, sans-serif;
   background-color: #f2f2f2;
+  box-sizing: border-box;
 }
 
 #root, .container {
-/* display: flex;
-  flex-direction: column;*/
   height: 100%;
   width: 100%;
 }
@@ -21,7 +23,6 @@ body, html {
   padding: 20px;
   background-color: #4CAF50;
   display: flex;
-  /*justify-content: space-between;*/
   align-items: center;
   color: white;
   box-sizing: border-box;
@@ -45,21 +46,6 @@ body, html {
   background-color: #ddd;
 }
 
-/*.form-container {
-display: flex;
-flex-direction: column;
-align-items: center;
-margin: 0px auto;
-max-width: 400px;
-background: white;
-padding: 20px;
-border-radius: 10px;
-background-color: green;
-box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-border-style: solid;
-border-color: white;
-}
-*/
 input {
   width: 90%;
   padding: 10px;
@@ -84,23 +70,35 @@ h1 {
   height: auto;
 }
 
-.login{
+.login {
   padding-top: 80px;
   height: 100%;
-
-
 }
 
-
-
-@media (max-width: 768px){
-    .content{
+@media (max-width: 768px) {
+  .content {
     padding: 0px;
     display: flex;
     width: 100%;
-    height: 100%; 
+    height: 100%;
     flex-direction: column;
   }
+}
 
-  
+/* Safari-specific styles */
+@media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0) {
+  .header {
+    display: -webkit-flex; /* Safari 6.1+ */
+    -webkit-align-items: center; /* Safari 6.1+ */
+    background-color: #4CAF50 !important; /* Ensure background color renders */
+  }
+
+  .header .nav-buttons button {
+    background-color: #fff !important; /* Ensure background color renders */
+    color: #4CAF50 !important; /* Ensure text color renders */
+  }
+
+  .header .nav-buttons button:hover {
+    background-color: #ddd !important; /* Ensure hover background color renders */
+  }
 }
