@@ -1,4 +1,4 @@
-/* Apply universal box-sizing */
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -8,7 +8,7 @@ body, html {
   padding: 0;
   height: 100%;
   width: 100%;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Helvetica, Arial, sans-serif, serif;
   background-color: #f2f2f2;
   box-sizing: border-box;
 }
@@ -85,20 +85,20 @@ h1 {
   }
 }
 
-/* Safari-specific styles */
+
 @media screen and (min-color-index:0) and(-webkit-min-device-pixel-ratio:0) {
   .header {
-    display: -webkit-flex; /* Safari 6.1+ */
-    -webkit-align-items: center; /* Safari 6.1+ */
-    background-color: #4CAF50 !important; /* Ensure background color renders */
+    display: -webkit-flex;
+    -webkit-align-items: center; 
+    background-color: #4CAF50 !important;
   }
 
   .header .nav-buttons button {
-    background-color: #fff !important; /* Ensure background color renders */
-    color: #4CAF50 !important; /* Ensure text color renders */
+    background-color: #fff !important;
+    color: #4CAF50 !important; 
   }
 
   .header .nav-buttons button:hover {
-    background-color: #ddd !important; /* Ensure hover background color renders */
+    background-color: #ddd !important; 
   }
 }

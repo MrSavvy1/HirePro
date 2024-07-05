@@ -4,8 +4,6 @@ import { useNavigate, Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import Header from './Header';
 import Footer from './Footer';
-
-
 import './Signup.css';
 
 const Login = ({ onLogin }) => {

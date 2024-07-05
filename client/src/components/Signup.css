@@ -19,8 +19,27 @@
 	
 }
 
+.signup-container h2{
+	color: white;
+}
+
+.form-container{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin: 0px auto;
+	max-width: 400px;
+	background: white;
+	padding: 20px;
+	border-radius: 10px;
+	background-color: green;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-style: solid;
+	border-color: white;
+}
+
 .logo-img {
-	  max-width: 100px;
+	  max-width: 50px;
 		height: auto;
 		border-radius: 50%;
 		background-color: white;

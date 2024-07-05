@@ -1,23 +1,24 @@
-import React, { useState } from 'react';
+// App.js
+import React, { useState, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import EmployeeHeader from './components/EmployeeHeader';
-import CompanyHeader from './components/CompanyHeader';
-import Home from './components/Home';
-import WhoAreYou from './components/WhoAreYou';
-import Signup from './components/Signup';
-import Login from './components/Login';
-import JobListing from './components/JobListing';
-import JobDetails from './components/JobDetails';
-import JobPost from './components/PostJob';
-import Header2 from './components/Header';
-import Footer from './components/Footer';
-import Header from './components/Header2';
-import Profile from './components/Profile';
-import ProfileCom from './components/ProfileCom';
-//import AppliedJobs from './components/AppliedJobs';
-import CompanyJobs from './components/CompanyJobs';
-//import CreateJobCategory from './components/CreateJobCategory';
+import LoadingSpinner from './LoadingSpinner';
 import './App.css';
+
+const EmployeeHeader = lazy(() => import('./components/EmployeeHeader'));
+const CompanyHeader = lazy(() => import('./components/CompanyHeader'));
+const Home = lazy(() => import('./components/Home'));
+const WhoAreYou = lazy(() => import('./components/WhoAreYou'));
+const Signup = lazy(() => import('./components/Signup'));
+const Login = lazy(() => import('./components/Login'));
+const JobListing = lazy(() => import('./components/JobListing'));
+const JobDetails = lazy(() => import('./components/JobDetails'));
+const JobPost = lazy(() => import('./components/PostJob'));
+const Header2 = lazy(() => import('./components/Header'));
+const Footer = lazy(() => import('./components/Footer'));
+const Header = lazy(() => import('./components/Header2'));
+const Profile = lazy(() => import('./components/Profile'));
+const ProfileCom = lazy(() => import('./components/ProfileCom'));
+const CompanyJobs = lazy(() => import('./components/CompanyJobs'));
 
 function App() {
     const [role, setRole] = useState('');
@@ -32,35 +33,31 @@ function App() {
         if (!isAuthenticated) {
             return <Navigate to="/login" />;
         }
-       // if (roles && !roles.includes(role)) {
-      //      return <Navigate to="/" />;
-      //  }
+        // if (roles && !roles.includes(role)) {
+        //    return <Navigate to="/" />;
+        // }
         return element;
     };
 
     return (
         <Router>
             <div className="App">
-                {isAuthenticated && role === 'regular'}
-                {isAuthenticated && role === 'company'}
-                <Routes>
-                    <Route path="/" element={<> <Header2 /> <Home /> <Footer /> </>} />
-                    <Route path="/whoareyou" element={<WhoAreYou setRole={setRole} /> } />
-                    <Route path="/signup" element={<Signup role={role} />} />
-                    <Route path="/login" element={ <Login onLogin={handleLogin} /> } />
-                    {/* Regular User Routes */}
-                    <Route path="/joblisting" element={<PrivateRoute element={<> <EmployeeHeader /> <JobListing /> <Footer /> </>} roles={['regular']} />} />
-                    <Route path="/job/:id" element={<PrivateRoute element={<> <EmployeeHeader /> <JobDetails /> <Footer /> </>} roles={['regular']} />} />
-                    <Route path="/profile" element={<PrivateRoute element={<> <EmployeeHeader /> <Profile /> <Footer /> </>} roles={['regular']} />} />
-                    {/*  <Route path="/applied-jobs" element={<PrivateRoute element={<AppliedJobs />} roles={['regular']} />} /> */}
-                    {/* Company User Routes */}
-                    {/* <Route path="/jobcat" element={<PrivateRoute element={<>  <CompanyHeader /> <CreateJobCategory /> <Footer /> </>} roles={['company']} />} />   */}
-                    
-                    <Route path="/post-job" element={<PrivateRoute element={<>  <CompanyHeader /> <JobPost /> <Footer /> </>} roles={['company']} />} />
-                     
-                    <Route path="/profilecom" element={<PrivateRoute element={<>  <CompanyHeader />  <ProfileCom /> <Footer /> </>} roles={['company']} />} />
-                    <Route path="/company-jobs" element={<PrivateRoute element={<>  <CompanyHeader /> <CompanyJobs /> <Footer /> </>} roles={['company']} />} />
-                </Routes>
+                <Suspense fallback={<LoadingSpinner />}>
+                    <Routes>
+                        <Route path="/" element={<> <Header2 /> <Home /> <Footer /> </>} />
+                        <Route path="/whoareyou" element={<WhoAreYou setRole={setRole} />} />
+                        <Route path="/signup" element={<Signup role={role} />} />
+                        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+                        {/* Regular User Routes */}
+                        <Route path="/joblisting" element={<PrivateRoute element={<> <EmployeeHeader /> <JobListing /> <Footer /> </>} roles={['regular']} />} />
+                        <Route path="/job/:id" element={<PrivateRoute element={<> <EmployeeHeader /> <JobDetails /> <Footer /> </>} roles={['regular']} />} />
+                        <Route path="/profile" element={<PrivateRoute element={<> <EmployeeHeader /> <Profile /> <Footer /> </>} roles={['regular']} />} />
+                        {/* Company User Routes */}
+                        <Route path="/post-job" element={<PrivateRoute element={<> <CompanyHeader /> <JobPost /> <Footer /> </>} roles={['company']} />} />
+                        <Route path="/profilecom" element={<PrivateRoute element={<> <CompanyHeader /> <ProfileCom /> <Footer /> </>} roles={['company']} />} />
+                        <Route path="/company-jobs" element={<PrivateRoute element={<> <CompanyHeader /> <CompanyJobs /> <Footer /> </>} roles={['company']} />} />
+                    </Routes>
+                </Suspense>
             </div>
         </Router>
     );
